@@ -19,7 +19,7 @@ public class CorsConfig {
                         .allowedOrigins("*")
                         //allow cookie
                         .allowCredentials(true)
-                        //request methods
+                        //request methods configure
                         .allowedMethods("GET","POST", "PUT", "DELETE")
                         //head information
                         .allowedHeaders("*")
