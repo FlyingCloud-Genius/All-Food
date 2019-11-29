@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class JwtFilter extends BasicHttpAuthenticationFilter {
 
-    private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    private final static Logger LOGGER = LoggerFactory.getLogger(JwtFilter.class);
 
     @Override
     protected boolean isLoginAttempt(ServletRequest request, ServletResponse response) {

@@ -3,6 +3,8 @@ package com.allFood.backend.config.shiro;
 import com.allFood.backend.config.shiro.security.JwtToken;
 import com.allFood.backend.config.shiro.security.JwtUtil;
 import com.allFood.backend.config.shiro.security.SecurityConst;
+import com.allFood.backend.dao.User;
+import com.allFood.backend.service.UserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -23,7 +25,7 @@ import java.util.Set;
 @Service
 public class MyRealm extends AuthorizingRealm {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    private final static Logger LOGGER = LoggerFactory.getLogger(MyRealm.class);
 
     private UserService userService;
 
@@ -64,24 +66,24 @@ public class MyRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
-        String account = JwtUtil.getClaim(principalCollection.toString(), SecurityConst.ACCOUNT);
-        SysUser user = userService.findUserByName(account);
+//        String account = JwtUtil.getClaim(principalCollection.toString(), SecurityConst.ACCOUNT);
+//        String password = userService.getPassword(account);
 
         //get the role the user got in the system
-        List<SysRole> roles = user.getRoles();
-        for (SysRole role : roles) {
-            authorizationInfo.addRole(role.getRoleName());
-        }
+//        List<SysRole> roles = user.getRoles();
+//        for (SysRole role : roles) {
+//            authorizationInfo.addRole(role.getRoleName());
+//        }
 
-        //get all the permissions the user got
-        Set<String> permissions = new HashSet<>();
-        for (SysRole role : roles) {
-
-            for (SysPermission permission : role.getPermissions()) {
-                permissions.add(permission.getPermType());
-            }
-        }
-        authorizationInfo.addStringPermissions(permissions);
+//        //get all the permissions the user got
+//        Set<String> permissions = new HashSet<>();
+//        for (SysRole role : roles) {
+//
+//            for (SysPermission permission : role.getPermissions()) {
+//                permissions.add(permission.getPermType());
+//            }
+//        }
+//        authorizationInfo.addStringPermissions(permissions);
 
         return authorizationInfo;
     }
