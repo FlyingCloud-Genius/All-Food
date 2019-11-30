@@ -51,4 +51,24 @@ public class UserServiceImpl implements UserService {
         response.put("error", "an error occurs");
         return response;
     }
+
+    @Override
+    public void addUser(String userName, String password) {
+        userRepository.save(new User(userName, password));
+    }
+
+    @Override
+    public void deleteUser(String userName) {
+        userRepository.delete(userRepository.findByUserName(userName));
+    }
+
+    @Override
+    public void updateInformation(User user) {
+        User userTemp = userRepository.findByUserName(user.getUserName());
+        if (userTemp == null) {
+            return;
+        } else {
+            userRepository.
+        }
+    }
 }

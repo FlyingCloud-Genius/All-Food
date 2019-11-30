@@ -16,6 +16,7 @@ public class RedisClientTemplate {
     public boolean setToRedis(String key,Object value){
         try {
             String str=jedisClusterConfig.getJedisCluster().set(key, String.valueOf(value));
+            expire(key, 20 * 60);
             if("OK".equals(str))
                 return true;
         }catch (Exception ex){
