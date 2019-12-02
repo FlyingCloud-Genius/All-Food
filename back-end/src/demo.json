@@ -1,0 +1,31 @@
+
+//dishes
+{
+  "id": ObjectId(),
+  "dishName": "",
+  "cookingTime": 13,
+  "steps": ["", ""],
+  "category": "",
+  "visitTimes": 100,
+  "nutrition": {
+    "sugar": 100,
+    "protein": 200,
+    "cholesterol": 200,
+    "fat": 100,
+    "calories": 200,
+    "saturatedFat": 100,
+    "sodium": 100
+  },
+  "ingredient": ["egg", "apple"],
+  "tag": {
+    "taste": ["spicy", "sweet"],
+    "region": "Asian",
+    "dishType": "String",
+    "targetPeople": ["", ""],
+    "nutritionLimitation": ["", ""],
+    "festival": ["", ""],
+    "specialElement": ["", ""],
+    "easy": (boolean) 1
+  },
+  "uploadedBy": "userName"
+}
