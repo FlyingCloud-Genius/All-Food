@@ -3,10 +3,11 @@ package com.allFood.backend.dao;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "dish_user")
-public class User {
+public class User implements Serializable {
 
     @Id
     @Column(name = "user_id")
