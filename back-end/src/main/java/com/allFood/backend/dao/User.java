@@ -31,7 +31,7 @@ public class User implements Serializable {
     @Column(name = "height")
     private Integer height;
 
-    @Column(name = "e-mail")
+    @Column(name = "e_mail")
     private String eMail;
 
     @Column(name = "phone_number")
