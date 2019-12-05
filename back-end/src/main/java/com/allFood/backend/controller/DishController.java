@@ -38,4 +38,12 @@ public class DishController {
             return new ErrorResponse(504, "insertion failed");
         }
     }
+
+    @PostMapping(value = "/test_dish")
+    public Response testDB(Dish dish) {
+        if (dishService.insertDish(dish)) {
+            return new SuccessResponse(200, "successfully insert");
+        }
+        return new ErrorResponse(504, "insertion failed");
+    }
 }

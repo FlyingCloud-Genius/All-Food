@@ -9,4 +9,12 @@ public class ErrorResponse extends Response{
         super(false, status);
         this.message = message;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }
