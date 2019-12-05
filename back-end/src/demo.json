@@ -1,7 +1,7 @@
 
 //dishes
 {
-  "id": ObjectId(),
+  "id": 0,
   "dishName": "",
   "cookingTime": 13,
   "steps": ["", ""],
@@ -25,7 +25,7 @@
     "nutritionLimitation": ["", ""],
     "festival": ["", ""],
     "specialElement": ["", ""],
-    "easy": (boolean) 1
+    "easy": true
   },
   "uploadedBy": "userName"
 }
