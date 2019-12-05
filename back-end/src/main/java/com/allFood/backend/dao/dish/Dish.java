@@ -1,5 +1,7 @@
 package com.allFood.backend.dao.dish;
 
+import com.allFood.backend.util.annotation.AutoInc;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -10,8 +12,10 @@ import java.util.List;
 public class Dish {
 
     @Id
+    @AutoInc
     @Field(value = "_id")
-    private String Id;
+    @JsonIgnore
+    private Integer Id;
 
     private String dishName;
 
@@ -33,11 +37,11 @@ public class Dish {
 
     private Tag tag;
 
-    public String getId() {
+    public Integer getId() {
         return Id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         Id = id;
     }
 

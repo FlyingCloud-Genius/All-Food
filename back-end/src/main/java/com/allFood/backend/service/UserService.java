@@ -1,6 +1,7 @@
 package com.allFood.backend.service;
 
 import com.allFood.backend.dao.User;
+import com.allFood.backend.request.AddUserRequest;
 
 import java.util.Map;
 
@@ -10,9 +11,9 @@ public interface UserService {
 
     Map<String, Object> logIn(String userName, String password);
 
-    void addUser(String userName, String password);
+    boolean addUser(AddUserRequest addUserRequest);
 
-    void deleteUser(String userName);
+    boolean deleteUser(String userName);
 
-    void updateInformation(User user);
+    User updateInformation(User user);
 }

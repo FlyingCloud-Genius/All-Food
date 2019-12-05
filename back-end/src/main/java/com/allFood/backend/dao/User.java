@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "dish_user")
@@ -37,6 +38,21 @@ public class User implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(name = "create_time")
+    private String createTime;
+
+    @Column(name = "region")
+    private String region;
+
+    @Column(name = "taste")
+    private String taste;
+
+    @Column(name = "for_whom")
+    private String forWhom;
+
+    @Column(name = "favorite")
+    private List<String> favorite;
+
     public User() {
     }
 
@@ -45,7 +61,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(Long userId, String userName, String password, Integer age, Integer weight, Integer height, String eMail, String phoneNumber) {
+    public User(Long userId, String userName, String password, Integer age, Integer weight, Integer height, String eMail, String phoneNumber, String createTime, String region, String taste, String forWhom, List<String> favorite) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -54,6 +70,11 @@ public class User implements Serializable {
         this.height = height;
         this.eMail = eMail;
         this.phoneNumber = phoneNumber;
+        this.createTime = createTime;
+        this.region = region;
+        this.taste = taste;
+        this.forWhom = forWhom;
+        this.favorite = favorite;
     }
 
     public Long getUserId() {
@@ -119,4 +140,45 @@ public class User implements Serializable {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getTaste() {
+        return taste;
+    }
+
+    public void setTaste(String taste) {
+        this.taste = taste;
+    }
+
+    public String getForWhom() {
+        return forWhom;
+    }
+
+    public void setForWhom(String forWhom) {
+        this.forWhom = forWhom;
+    }
+
+    public List<String> getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(List<String> favorite) {
+        this.favorite = favorite;
+    }
 }
+

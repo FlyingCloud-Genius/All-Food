@@ -4,12 +4,14 @@ import com.allFood.backend.config.redis.RedisClientTemplate;
 import com.allFood.backend.config.shiro.security.JwtUtil;
 import com.allFood.backend.dao.User;
 import com.allFood.backend.repository.UserRepository;
+import com.allFood.backend.request.AddUserRequest;
 import com.allFood.backend.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,22 +57,65 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(String userName, String password) {
-        userRepository.save(new User(userName, password));
+    public boolean addUser(AddUserRequest addUserRequest) {
+        if (userRepository.findByUserName(addUserRequest.getUserName()) == null) {
+            return false;
+        }
+        User user = new User(addUserRequest.getUserName(), addUserRequest.getPassword());
+        user.setAge(addUserRequest.getAge());
+        user.setCreateTime(new Date(System.currentTimeMillis()).toString());
+        user.seteMail(addUserRequest.geteMail());
+        user.setHeight(addUserRequest.getHeight());
+        user.setWeight(addUserRequest.getWeight());
+        user.setRegion(addUserRequest.getRegion());
+        user.setPhoneNumber(addUserRequest.getPhoneNumber());
+        userRepository.save(user);
+        return true;
     }
 
     @Override
-    public void deleteUser(String userName) {
-        userRepository.delete(userRepository.findByUserName(userName));
+    public boolean deleteUser(String userName) {
+        try {
+            userRepository.delete(userRepository.findByUserName(userName));
+            return true;
+        } catch (Exception e) {
+            LOGGER.error("deletion failed");
+            e.getStackTrace();
+            return false;
+        }
     }
 
     @Override
-    public void updateInformation(User user) {
+    public User updateInformation(User user) {
         User userTemp = userRepository.findByUserName(user.getUserName());
         if (userTemp == null) {
-            return;
+            return null;
         } else {
-            //TODO: user information update
+            if (user.getPassword() != null) {
+                userTemp.setPassword(user.getPassword());
+            } else if (user.getAge() != null){
+                userTemp.setAge(user.getAge());
+            } else if (user.geteMail() != null){
+                userTemp.seteMail(user.geteMail());
+            } else if (user.getFavorite() != null){
+                userTemp.setFavorite(user.getFavorite());
+            } else if (user.getForWhom() != null){
+                userTemp.setForWhom(user.getForWhom());
+            } else if (user.getHeight() != null){
+                userTemp.setHeight(user.getHeight());
+            } else if (user.getWeight() != null){
+                userTemp.setWeight(user.getWeight());
+            } else if (user.getPhoneNumber() != null){
+                userTemp.setPhoneNumber(user.getPhoneNumber());
+            } else if (user.getRegion() != null){
+                userTemp.setRegion(user.getRegion());
+            } else if (user.getTaste() != null){
+                userTemp.setTaste(user.getTaste());
+            } else if (user.getUserName() != null){
+                userTemp.setUserName(user.getUserName());
+            }
         }
+        userRepository.saveAndFlush(userTemp);
+        return userTemp;
     }
 }
