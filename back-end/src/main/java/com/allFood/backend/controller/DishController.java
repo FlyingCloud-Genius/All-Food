@@ -32,6 +32,7 @@ public class DishController {
     }
 
     @PostMapping(value = "/dish")
+    
     public Response insertDish(Dish dish) {
         if (dishService.insertDish(dish)) {
             return new SuccessResponse(200, "successfully insert");

@@ -1,5 +1,6 @@
 package com.allFood.backend.controller;
 
+import com.allFood.backend.request.LogInRequest;
 import com.allFood.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/login")
-    public Map logIn(@RequestBody String userName, @RequestBody String password) {
-        return userService.logIn(userName, password);
+    public Map logIn(@RequestBody LogInRequest request) {
+        return userService.logIn(request.getUserName(), request.getPassword());
     }
 }
