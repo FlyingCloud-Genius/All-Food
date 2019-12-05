@@ -97,8 +97,6 @@ public class UserServiceImpl implements UserService {
                 userTemp.setAge(user.getAge());
             } else if (user.geteMail() != null){
                 userTemp.seteMail(user.geteMail());
-            } else if (user.getFavorite() != null){
-                userTemp.setFavorite(user.getFavorite());
             } else if (user.getForWhom() != null){
                 userTemp.setForWhom(user.getForWhom());
             } else if (user.getHeight() != null){

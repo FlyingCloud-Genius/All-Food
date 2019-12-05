@@ -50,9 +50,6 @@ public class User implements Serializable {
     @Column(name = "for_whom")
     private String forWhom;
 
-    @Column(name = "favorite")
-    private List<String> favorite;
-
     public User() {
     }
 
@@ -61,7 +58,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(Long userId, String userName, String password, Integer age, Integer weight, Integer height, String eMail, String phoneNumber, String createTime, String region, String taste, String forWhom, List<String> favorite) {
+    public User(Long userId, String userName, String password, Integer age, Integer weight, Integer height, String eMail, String phoneNumber, String createTime, String region, String taste, String forWhom) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -74,7 +71,6 @@ public class User implements Serializable {
         this.region = region;
         this.taste = taste;
         this.forWhom = forWhom;
-        this.favorite = favorite;
     }
 
     public Long getUserId() {
@@ -173,12 +169,5 @@ public class User implements Serializable {
         this.forWhom = forWhom;
     }
 
-    public List<String> getFavorite() {
-        return favorite;
-    }
-
-    public void setFavorite(List<String> favorite) {
-        this.favorite = favorite;
-    }
 }
 
