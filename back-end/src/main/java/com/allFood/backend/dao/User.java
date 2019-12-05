@@ -37,9 +37,23 @@ public class User implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    public User() {
+    }
+
     public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
+    }
+
+    public User(Long userId, String userName, String password, Integer age, Integer weight, Integer height, String eMail, String phoneNumber) {
+        this.userId = userId;
+        this.userName = userName;
+        this.password = password;
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.eMail = eMail;
+        this.phoneNumber = phoneNumber;
     }
 
     public Long getUserId() {
