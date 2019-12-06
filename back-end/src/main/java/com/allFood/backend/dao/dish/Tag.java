@@ -6,9 +6,9 @@ public class Tag {
 
     private List<String> taste;
 
-    private String region;
+    private List<String> region;
 
-    private String dishType;
+    private List<String> dishType;
 
     private List<String> targetPeople;
 
@@ -20,7 +20,7 @@ public class Tag {
 
     private boolean easy;
 
-    public Tag(List<String> taste, String region, String dishType, List<String> targetPeople, List<String> nutritionLimitation, List<String> festival, List<String> specialElement, boolean easy) {
+    public Tag(List<String> taste, List<String> region, List<String> dishType, List<String> targetPeople, List<String> nutritionLimitation, List<String> festival, List<String> specialElement, boolean easy) {
         this.taste = taste;
         this.region = region;
         this.dishType = dishType;
@@ -31,6 +31,9 @@ public class Tag {
         this.easy = easy;
     }
 
+    public Tag() {
+    }
+
     public List<String> getTaste() {
         return taste;
     }
@@ -39,19 +42,19 @@ public class Tag {
         this.taste = taste;
     }
 
-    public String getRegion() {
+    public List<String> getRegion() {
         return region;
     }
 
-    public void setRegion(String region) {
+    public void setRegion(List<String> region) {
         this.region = region;
     }
 
-    public String getDishType() {
+    public List<String> getDishType() {
         return dishType;
     }
 
-    public void setDishType(String dishType) {
+    public void setDishType(List<String> dishType) {
         this.dishType = dishType;
     }
 

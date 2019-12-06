@@ -7,6 +7,8 @@ import java.util.Map;
 
 public interface UserService {
 
+    User getUserInfo(String userName);
+
     String getPassword(String userName);
 
     Map<String, Object> logIn(String userName, String password);

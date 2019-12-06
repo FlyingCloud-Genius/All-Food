@@ -25,8 +25,17 @@ public class UserController {
     }
 
     @PostMapping(value = "/login")
-    public Map logIn(@RequestBody LogInRequest request) {
-        return userService.logIn(request.getUserName(), request.getPassword());
+    public Response logIn(@RequestBody LogInRequest request) {
+        return new DataResponse(userService.logIn(request.getUserName(), request.getPassword()));
+    }
+
+    @GetMapping(value = "/user/{userName}")
+    public Response getUser(@PathVariable String userName) {
+        User userTemp = userService.getUserInfo(userName);
+        if (userTemp == null) {
+            return new ErrorResponse(405, "user name not exists");
+        }
+        return new DataResponse(userTemp);
     }
 
     @PostMapping(value = "/user")

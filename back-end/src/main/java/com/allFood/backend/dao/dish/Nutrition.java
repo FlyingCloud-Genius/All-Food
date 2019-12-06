@@ -2,21 +2,21 @@ package com.allFood.backend.dao.dish;
 
 public class Nutrition {
 
-    private Integer sugar;
+    private Double sugar;
 
-    private Integer protein;
+    private Double protein;
 
-    private Integer cholesterol;
+    private Double cholesterol;
 
-    private Integer fat;
+    private Double fat;
 
-    private Integer calories;
+    private Double calories;
 
-    private Integer saturatedFat;
+    private Double saturatedFat;
 
-    private Integer sodium;
+    private Double sodium;
 
-    public Nutrition(Integer sugar, Integer protein, Integer cholesterol, Integer fat, Integer calories, Integer saturatedFat, Integer sodium) {
+    public Nutrition(Double sugar, Double protein, Double cholesterol, Double fat, Double calories, Double saturatedFat, Double sodium) {
         this.sugar = sugar;
         this.protein = protein;
         this.cholesterol = cholesterol;
@@ -26,59 +26,62 @@ public class Nutrition {
         this.sodium = sodium;
     }
 
-    public Integer getSugar() {
+    public Nutrition() {
+    }
+
+    public Double getSugar() {
         return sugar;
     }
 
-    public void setSugar(Integer sugar) {
+    public void setSugar(Double sugar) {
         this.sugar = sugar;
     }
 
-    public Integer getProtein() {
+    public Double getProtein() {
         return protein;
     }
 
-    public void setProtein(Integer protein) {
+    public void setProtein(Double protein) {
         this.protein = protein;
     }
 
-    public Integer getCholesterol() {
+    public Double getCholesterol() {
         return cholesterol;
     }
 
-    public void setCholesterol(Integer cholesterol) {
+    public void setCholesterol(Double cholesterol) {
         this.cholesterol = cholesterol;
     }
 
-    public Integer getFat() {
+    public Double getFat() {
         return fat;
     }
 
-    public void setFat(Integer fat) {
+    public void setFat(Double fat) {
         this.fat = fat;
     }
 
-    public Integer getCalories() {
+    public Double getCalories() {
         return calories;
     }
 
-    public void setCalories(Integer calories) {
+    public void setCalories(Double calories) {
         this.calories = calories;
     }
 
-    public Integer getSaturatedFat() {
+    public Double getSaturatedFat() {
         return saturatedFat;
     }
 
-    public void setSaturatedFat(Integer saturatedFat) {
+    public void setSaturatedFat(Double saturatedFat) {
         this.saturatedFat = saturatedFat;
     }
 
-    public Integer getSodium() {
+    public Double getSodium() {
         return sodium;
     }
 
-    public void setSodium(Integer sodium) {
+    public void setSodium(Double sodium) {
         this.sodium = sodium;
     }
 }

@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "dish_user")
+@Table(name = "db_user")
 public class User implements Serializable {
 
     @Id
@@ -50,6 +51,23 @@ public class User implements Serializable {
     @Column(name = "for_whom")
     private String forWhom;
 
+    @Column(name = "my_favorite_dish")
+    private List<DishConnection> myFavoriteDish = new ArrayList<>();
+
+    @Column(name = "my_upload_dish")
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<DishConnection> myUploadDish = new ArrayList<>();
+
+    @Column(name = "my_upload_menu")
+    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.REMOVE})
+    private List<Menu> myUploadMenu = new ArrayList<>();
+
+    @Column(name = "my_favorite_menu")
+    private List<Menu> myFavoriteMenu = new ArrayList<>();
+
+    @Column(name = "my_preference")
+    private List<Preference> myPreference = new ArrayList<>();
+
     public User() {
     }
 
@@ -58,7 +76,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(Long userId, String userName, String password, Integer age, Integer weight, Integer height, String eMail, String phoneNumber, String createTime, String region, String taste, String forWhom) {
+    public User(Long userId, String userName, String password, Integer age, Integer weight, Integer height, String eMail, String phoneNumber, String createTime, String region, String taste, String forWhom, List<DishConnection> myFavoriteDish, List<DishConnection> myUploadDish, List<Menu> myUploadMenu, List<Menu> myFavoriteMenu, List<Preference> myPreference) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -71,6 +89,11 @@ public class User implements Serializable {
         this.region = region;
         this.taste = taste;
         this.forWhom = forWhom;
+        this.myFavoriteDish = myFavoriteDish;
+        this.myUploadDish = myUploadDish;
+        this.myUploadMenu = myUploadMenu;
+        this.myFavoriteMenu = myFavoriteMenu;
+        this.myPreference = myPreference;
     }
 
     public Long getUserId() {
@@ -169,5 +192,64 @@ public class User implements Serializable {
         this.forWhom = forWhom;
     }
 
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "favorite_dish",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "dish_id"))
+    public List<DishConnection> getMyFavoriteDish() {
+        return myFavoriteDish;
+    }
+
+    public void setMyFavoriteDish(List<DishConnection> myFavoriteDish) {
+        this.myFavoriteDish = myFavoriteDish;
+    }
+
+    public void addMyFavoriteDish(DishConnection dishConnection) {
+        this.myFavoriteDish.add(dishConnection);
+    }
+
+    public List<DishConnection> getMyUploadDish() {
+        return myUploadDish;
+    }
+
+    public void uploadDish(DishConnection dishConnection) {
+        this.myUploadDish.add(dishConnection);
+    }
+
+    public void setMyUploadDish(List<DishConnection> myUploadDish) {
+        this.myUploadDish = myUploadDish;
+    }
+
+    public List<Menu> getMyUploadMenu() {
+        return myUploadMenu;
+    }
+
+    public void addMenu(Menu menu) {
+        this.myUploadMenu.add(menu);
+    }
+
+    public void setMyUploadMenu(List<Menu> myUploadMenu) {
+        this.myUploadMenu = myUploadMenu;
+    }
+
+    @ManyToMany(cascade = {CascadeType.REMOVE, CascadeType.REFRESH})
+    @JoinTable(name = "favorite_menu",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "menu_id"))
+    public List<Menu> getMyFavoriteMenu() {
+        return myFavoriteMenu;
+    }
+
+    public void setMyFavoriteMenu(List<Menu> myFavoriteMenu) {
+        this.myFavoriteMenu = myFavoriteMenu;
+    }
+
+    public List<Preference> getMyPreference() {
+        return myPreference;
+    }
+
+    public void setMyPreference(List<Preference> myPreference) {
+        this.myPreference = myPreference;
+    }
 }
 

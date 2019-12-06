@@ -1,5 +1,7 @@
 package com.allFood.backend.dao.dish;
 
+import com.allFood.backend.util.annotation.AutoIncrement;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -7,13 +9,15 @@ import java.util.List;
 @Document(collection = "dish")
 public class Dish {
 
+    @AutoIncrement
+    @JsonIgnore
+    private Long dishId;
+
     private String dishName;
 
     private Integer cookingTime;
 
     private List<String> steps;
-
-    private String category;
 
     private String submitTime;
 
@@ -26,6 +30,14 @@ public class Dish {
     private List<String> ingredient;
 
     private Tag tag;
+
+    public Long getDishId() {
+        return dishId;
+    }
+
+    public void setDishId(Long dishId) {
+        this.dishId = dishId;
+    }
 
     public String getDishName() {
         return dishName;
@@ -49,14 +61,6 @@ public class Dish {
 
     public void setSteps(List<String> steps) {
         this.steps = steps;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getSubmitTime() {
