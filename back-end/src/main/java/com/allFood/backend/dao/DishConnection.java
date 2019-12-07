@@ -17,10 +17,14 @@ public class DishConnection {
     private List<User> dishLikedBy = new ArrayList<>();
 
     @Column(name = "dish_in_menu")
-    @ManyToMany(mappedBy = "")
+    @ManyToMany(mappedBy = "have_dish")
     private List<Menu> dishInMenu = new ArrayList<>();
 
     public DishConnection() {
+    }
+
+    public DishConnection(Long dishId) {
+        this.dishId = dishId;
     }
 
     public DishConnection(Long dishId, List<User> dishLikedBy, List<Menu> dishInMenu) {

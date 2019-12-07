@@ -1,6 +1,8 @@
 package com.allFood.backend.service.impl;
 
+import com.allFood.backend.dao.DishConnection;
 import com.allFood.backend.dao.dish.Dish;
+import com.allFood.backend.repository.DishConnectionRepository;
 import com.allFood.backend.repository.DishRepository;
 import com.allFood.backend.service.DishService;
 import org.slf4j.Logger;
@@ -17,16 +19,20 @@ public class DishServiceImpl implements DishService {
 
     private DishRepository dishRepository;
 
+    private DishConnectionRepository dishConnectionRepository;
+
     @Autowired
-    DishServiceImpl(DishRepository dishRepository) {
+    DishServiceImpl(DishRepository dishRepository, DishConnectionRepository dishConnectionRepository) {
         this.dishRepository = dishRepository;
+        this.dishConnectionRepository = dishConnectionRepository;
     }
 
     @Override
     public boolean insertDish(Dish dish) {
         Dish DBdish = dishRepository.findByDishName(dish.getDishName());
         if (DBdish == null) {
-            dishRepository.save(dish);
+            DBdish = dishRepository.save(dish);
+            dishConnectionRepository.save(new DishConnection(DBdish.getDishId()));
             return true;
         } else {
             return false;
