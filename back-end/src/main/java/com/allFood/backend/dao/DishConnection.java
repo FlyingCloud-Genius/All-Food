@@ -48,7 +48,7 @@ public class DishConnection {
         this.dishLikedBy = dishLikedBy;
     }
 
-    @ManyToMany(mappedBy = "have_dish")
+    @ManyToMany(mappedBy = "have_dishes")
     public List<Menu> getDishInMenu() {
         return dishInMenu;
     }

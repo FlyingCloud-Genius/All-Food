@@ -22,8 +22,8 @@ public class Menu {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "have_dish")
-    private List<DishConnection> dish = new ArrayList<>();
+    @Column(name = "have_dishes")
+    private List<DishConnection> dishes = new ArrayList<>();
 
     @Column(name = "menu_liked_by")
     private List<User> menuLikedBy = new ArrayList<>();
@@ -55,17 +55,17 @@ public class Menu {
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "menu_have_dish",
             joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "menu_id"),
-            inverseJoinColumns = @JoinColumn(name = "dish_in_menu", referencedColumnName = "dish_id"))
-    public List<DishConnection> getDish() {
-        return dish;
+            inverseJoinColumns = @JoinColumn(name = "dish_id", referencedColumnName = "dish_id"))
+    public List<DishConnection> getDishes() {
+        return dishes;
     }
 
-    public void setDish(List<DishConnection> dish) {
-        this.dish = dish;
+    public void setDishes(List<DishConnection> dishes) {
+        this.dishes = dishes;
     }
 
     public void addDishToMenu(DishConnection dishConnection) {
-        this.dish.add(dishConnection);
+        this.dishes.add(dishConnection);
     }
 
     @ManyToMany(mappedBy = "my_favorite_menu")
