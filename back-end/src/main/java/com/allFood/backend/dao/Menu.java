@@ -11,24 +11,20 @@ import java.util.List;
 @Access(AccessType.PROPERTY)
 public class Menu {
 
+    private Long menuId;
+
+    private String menuName;
+
+    private String description;
+
+    private List<DishConnection> dishes = new ArrayList<>();
+
+    private List<User> menuLikedBy = new ArrayList<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "menu_id")
     @JsonIgnore
-    private Long menuId;
-
-    @Column(name = "menu_name")
-    private String menuName;
-
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "have_dishes")
-    private List<DishConnection> dishes = new ArrayList<>();
-
-    @Column(name = "menu_liked_by")
-    private List<User> menuLikedBy = new ArrayList<>();
-
     public Long getMenuId() {
         return menuId;
     }
@@ -37,6 +33,7 @@ public class Menu {
         this.menuId = menuId;
     }
 
+    @Column(name = "menu_name")
     public String getMenuName() {
         return menuName;
     }
@@ -45,6 +42,7 @@ public class Menu {
         this.menuName = menuName;
     }
 
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -53,6 +51,7 @@ public class Menu {
         this.description = description;
     }
 
+    @Column(name = "have_dishes")
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "menu_have_dish",
             joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "menu_id"),
@@ -69,6 +68,7 @@ public class Menu {
         this.dishes.add(dishConnection);
     }
 
+    @Column(name = "menu_liked_by")
     @ManyToMany(targetEntity = User.class, mappedBy = "my_favorite_menu")
     public List<User> getMenuLikedBy() {
         return menuLikedBy;
