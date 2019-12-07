@@ -6,7 +6,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "dish")
-@Access(AccessType.PROPERTY)
 public class DishConnection {
 
     @Column(name = "dish_id")

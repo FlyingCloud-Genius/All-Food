@@ -8,7 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "taboo")
-@Access(AccessType.PROPERTY)
 public class Taboo {
 
     @Column(name = "taboo_id")

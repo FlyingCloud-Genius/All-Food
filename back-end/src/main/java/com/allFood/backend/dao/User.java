@@ -9,7 +9,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "db_user")
-@Access(AccessType.PROPERTY)
 public class User implements Serializable {
 
     @Column(name = "user_id")

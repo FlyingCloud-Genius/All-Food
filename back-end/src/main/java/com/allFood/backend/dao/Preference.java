@@ -10,7 +10,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "preference")
-@Access(AccessType.PROPERTY)
 public class Preference {
 
     @JsonIgnore
