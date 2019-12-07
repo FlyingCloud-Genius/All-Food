@@ -23,9 +23,15 @@ public class Menu {
     private String description;
 
     @Column(name = "have_dishes")
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "menu_have_dish",
+            joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "menu_id"),
+            inverseJoinColumns = @JoinColumn(name = "dish_id", referencedColumnName = "dish_id"))
     private List<DishConnection> dishes = new ArrayList<>();
 
     @Column(name = "menu_liked_by")
+    @ManyToMany(targetEntity = User.class, mappedBy = "my_favorite_menu")
     private List<User> menuLikedBy = new ArrayList<>();
 
     public Long getMenuId() {
@@ -52,10 +58,6 @@ public class Menu {
         this.description = description;
     }
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(name = "menu_have_dish",
-            joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "menu_id"),
-            inverseJoinColumns = @JoinColumn(name = "dish_id", referencedColumnName = "dish_id"))
     public List<DishConnection> getDishes() {
         return dishes;
     }
@@ -68,7 +70,6 @@ public class Menu {
         this.dishes.add(dishConnection);
     }
 
-    @ManyToMany(targetEntity = User.class, mappedBy = "my_favorite_menu")
     public List<User> getMenuLikedBy() {
         return menuLikedBy;
     }

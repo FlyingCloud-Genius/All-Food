@@ -20,6 +20,7 @@ public class Taboo {
     private String taboo_name;
 
     @Column(name = "preference")
+    @ManyToMany(targetEntity = Preference.class, mappedBy = "taboos")
     private List<Preference> preferences = new ArrayList<>();
 
     public Taboo() {
@@ -47,7 +48,6 @@ public class Taboo {
         this.taboo_name = taboo_name;
     }
 
-    @ManyToMany(targetEntity = Preference.class, mappedBy = "taboos")
     public List<Preference> getPreferences() {
         return preferences;
     }

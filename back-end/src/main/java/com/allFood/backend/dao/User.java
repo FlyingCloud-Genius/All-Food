@@ -52,18 +52,32 @@ public class User implements Serializable {
     private String forWhom;
 
     @Column(name = "my_favorite_dishes")
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "favorite_dish",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "dish_id", referencedColumnName = "dish_id"))
     private List<DishConnection> myFavoriteDishes = new ArrayList<>();
 
     @Column(name = "my_upload_dish")
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<DishConnection> myUploadDish = new ArrayList<>();
 
     @Column(name = "my_upload_menu")
+    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.REMOVE})
     private List<Menu> myUploadMenu = new ArrayList<>();
 
     @Column(name = "my_favorite_menu")
+    @ManyToMany(cascade = {CascadeType.REMOVE, CascadeType.REFRESH})
+    @JoinTable(name = "favorite_menu",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "menu_id"))
     private List<Menu> myFavoriteMenu = new ArrayList<>();
 
     @Column(name = "my_preference")
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "have_preference",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "preference_id"))
     private List<Preference> myPreference = new ArrayList<>();
 
     public User() {
@@ -190,10 +204,6 @@ public class User implements Serializable {
         this.forWhom = forWhom;
     }
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "favorite_dish",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "dish_id", referencedColumnName = "dish_id"))
     public List<DishConnection> getMyFavoriteDishes() {
         return myFavoriteDishes;
     }
@@ -206,7 +216,6 @@ public class User implements Serializable {
         this.myFavoriteDishes.add(dishConnection);
     }
 
-    @OneToMany(cascade = CascadeType.PERSIST)
     public List<DishConnection> getMyUploadDish() {
         return myUploadDish;
     }
@@ -219,7 +228,6 @@ public class User implements Serializable {
         this.myUploadDish = myUploadDish;
     }
 
-    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.REMOVE})
     public List<Menu> getMyUploadMenu() {
         return myUploadMenu;
     }
@@ -232,10 +240,6 @@ public class User implements Serializable {
         this.myUploadMenu = myUploadMenu;
     }
 
-    @ManyToMany(cascade = {CascadeType.REMOVE, CascadeType.REFRESH})
-    @JoinTable(name = "favorite_menu",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "menu_id"))
     public List<Menu> getMyFavoriteMenu() {
         return myFavoriteMenu;
     }
@@ -244,10 +248,6 @@ public class User implements Serializable {
         this.myFavoriteMenu = myFavoriteMenu;
     }
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "have_preference",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "preference_id"))
     public List<Preference> getMyPreference() {
         return myPreference;
     }

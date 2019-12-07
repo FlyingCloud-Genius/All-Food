@@ -13,9 +13,11 @@ public class DishConnection {
     private Long dishId; // corresponded id in mongo db
 
     @Column(name = "dish_liked_by")
+    @ManyToMany(targetEntity = User.class, mappedBy = "my_favorite_dishes")
     private List<User> dishLikedBy = new ArrayList<>();
 
     @Column(name = "dish_in_menu")
+    @ManyToMany(targetEntity = Menu.class, mappedBy = "have_dishes")
     private List<Menu> dishInMenu = new ArrayList<>();
 
     public DishConnection() {
@@ -39,7 +41,6 @@ public class DishConnection {
         this.dishId = dishId;
     }
 
-    @ManyToMany(targetEntity = User.class, mappedBy = "my_favorite_dishes")
     public List<User> getDishLikedBy() {
         return dishLikedBy;
     }
@@ -48,7 +49,6 @@ public class DishConnection {
         this.dishLikedBy = dishLikedBy;
     }
 
-    @ManyToMany(targetEntity = Menu.class, mappedBy = "have_dishes")
     public List<Menu> getDishInMenu() {
         return dishInMenu;
     }
