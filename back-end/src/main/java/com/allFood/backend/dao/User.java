@@ -76,7 +76,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(Long userId, String userName, String password, Integer age, Integer weight, Integer height, String eMail, String phoneNumber, String createTime, String region, String taste, String forWhom, List<DishConnection> myFavoriteDish, List<DishConnection> myUploadDish, List<Menu> myUploadMenu, List<Menu> myFavoriteMenu, List<Preference> myPreference) {
+    public User(Long userId, String userName, String password, Integer age, Integer weight, Integer height, String eMail, String phoneNumber, String createTime, String region, String taste, String forWhom, List<DishConnection> myFavoriteDishes, List<DishConnection> myUploadDish, List<Menu> myUploadMenu, List<Menu> myFavoriteMenu, List<Preference> myPreference) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -89,7 +89,7 @@ public class User implements Serializable {
         this.region = region;
         this.taste = taste;
         this.forWhom = forWhom;
-        this.myFavoriteDish = myFavoriteDish;
+        this.myFavoriteDishes = myFavoriteDishes;
         this.myUploadDish = myUploadDish;
         this.myUploadMenu = myUploadMenu;
         this.myFavoriteMenu = myFavoriteMenu;
