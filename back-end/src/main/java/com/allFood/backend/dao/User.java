@@ -194,8 +194,8 @@ public class User implements Serializable {
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "favorite_dish",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "dish_id"))
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "dish_id", referencedColumnName = "dish_id"))
     public List<DishConnection> getMyFavoriteDish() {
         return myFavoriteDish;
     }
