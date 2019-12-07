@@ -12,8 +12,8 @@ public class DishConnection {
     @Column(name = "dish_id")
     private Long dishId; // corresponded id in mongo db
 
-    @Column(name = "liked_by")
-    private List<User> likedBy = new ArrayList<>();
+    @Column(name = "dish_liked_by")
+    private List<User> dishLikedBy = new ArrayList<>();
 
     @Column(name = "dish_in_menu")
     private List<Menu> dishInMenu = new ArrayList<>();
@@ -25,9 +25,9 @@ public class DishConnection {
         this.dishId = dishId;
     }
 
-    public DishConnection(Long dishId, List<User> likedBy, List<Menu> dishInMenu) {
+    public DishConnection(Long dishId, List<User> dishLikedBy, List<Menu> dishInMenu) {
         this.dishId = dishId;
-        this.likedBy = likedBy;
+        this.dishLikedBy = dishLikedBy;
         this.dishInMenu = dishInMenu;
     }
 
@@ -39,16 +39,16 @@ public class DishConnection {
         this.dishId = dishId;
     }
 
-    @ManyToMany(mappedBy = "my_favorite_dishes")
-    public List<User> getLikedBy() {
-        return likedBy;
+    @ManyToMany(targetEntity = User.class, mappedBy = "my_favorite_dishes")
+    public List<User> getDishLikedBy() {
+        return dishLikedBy;
     }
 
-    public void setLikedBy(List<User> likedBy) {
-        this.likedBy = likedBy;
+    public void setDishLikedBy(List<User> dishLikedBy) {
+        this.dishLikedBy = dishLikedBy;
     }
 
-    @ManyToMany(mappedBy = "have_dishes")
+    @ManyToMany(targetEntity = Menu.class, mappedBy = "have_dishes")
     public List<Menu> getDishInMenu() {
         return dishInMenu;
     }

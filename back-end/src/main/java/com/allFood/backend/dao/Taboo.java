@@ -47,7 +47,7 @@ public class Taboo {
         this.taboo_name = taboo_name;
     }
 
-    @ManyToMany(mappedBy = "taboos")
+    @ManyToMany(targetEntity = Preference.class, mappedBy = "taboos")
     public List<Preference> getPreferences() {
         return preferences;
     }
