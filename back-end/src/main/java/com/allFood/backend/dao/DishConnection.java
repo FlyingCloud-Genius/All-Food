@@ -9,10 +9,13 @@ import java.util.List;
 @Access(AccessType.PROPERTY)
 public class DishConnection {
 
+    @Column(name = "dish_id")
     private Long dishId; // corresponded id in mongo db
 
+    @Column(name = "dish_liked_by")
     private List<User> dishLikedBy = new ArrayList<>();
 
+    @Column(name = "dish_in_menu")
     private List<Menu> dishInMenu = new ArrayList<>();
 
     public DishConnection() {
@@ -29,7 +32,6 @@ public class DishConnection {
     }
 
     @Id
-    @Column(name = "dish_id")
     public Long getDishId() {
         return dishId;
     }
@@ -39,7 +41,6 @@ public class DishConnection {
     }
 
     @ManyToMany(targetEntity = User.class, mappedBy = "my_favorite_dishes")
-    @Column(name = "dish_liked_by")
     public List<User> getDishLikedBy() {
         return dishLikedBy;
     }
@@ -49,7 +50,6 @@ public class DishConnection {
     }
 
     @ManyToMany(targetEntity = Menu.class, mappedBy = "have_dishes")
-    @Column(name = "dish_in_menu")
     public List<Menu> getDishInMenu() {
         return dishInMenu;
     }

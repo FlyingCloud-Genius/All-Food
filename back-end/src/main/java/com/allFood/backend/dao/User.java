@@ -12,38 +12,57 @@ import java.util.List;
 @Access(AccessType.PROPERTY)
 public class User implements Serializable {
 
+    @Column(name = "user_id")
+    @JsonIgnore
     private Long userId;
 
+    @Column(name = "user_name")
     private String userName;
 
+    @Column(name = "password")
+    @JsonIgnore
     private String password;
 
+    @Column(name = "age")
     private Integer age;
 
+    @Column(name = "weight")
     private Integer weight;
 
+    @Column(name = "height")
     private Integer height;
 
+    @Column(name = "e_mail")
     private String eMail;
 
+    @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(name = "create_time")
     private String createTime;
 
+    @Column(name = "region")
     private String region;
 
+    @Column(name = "taste")
     private String taste;
 
+    @Column(name = "for_whom")
     private String forWhom;
 
+    @Column(name = "my_favorite_dishes")
     private List<DishConnection> myFavoriteDishes = new ArrayList<>();
 
+    @Column(name = "my_upload_dish")
     private List<DishConnection> myUploadDish = new ArrayList<>();
 
+    @Column(name = "my_upload_menu")
     private List<Menu> myUploadMenu = new ArrayList<>();
 
+    @Column(name = "my_favorite_menu")
     private List<Menu> myFavoriteMenu = new ArrayList<>();
 
+    @Column(name = "my_preference")
     private List<Preference> myPreference = new ArrayList<>();
 
     public User() {
@@ -75,8 +94,6 @@ public class User implements Serializable {
     }
 
     @Id
-    @Column(name = "user_id")
-    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getUserId() {
         return userId;
@@ -86,7 +103,6 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
-    @Column(name = "user_name")
     public String getUserName() {
         return userName;
     }
@@ -95,8 +111,6 @@ public class User implements Serializable {
         this.userName = userName;
     }
 
-    @Column(name = "password")
-    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -105,7 +119,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    @Column(name = "age")
     public Integer getAge() {
         return age;
     }
@@ -114,7 +127,6 @@ public class User implements Serializable {
         this.age = age;
     }
 
-    @Column(name = "weight")
     public Integer getWeight() {
         return weight;
     }
@@ -123,7 +135,6 @@ public class User implements Serializable {
         this.weight = weight;
     }
 
-    @Column(name = "height")
     public Integer getHeight() {
         return height;
     }
@@ -132,7 +143,6 @@ public class User implements Serializable {
         this.height = height;
     }
 
-    @Column(name = "e_mail")
     public String geteMail() {
         return eMail;
     }
@@ -141,7 +151,6 @@ public class User implements Serializable {
         this.eMail = eMail;
     }
 
-    @Column(name = "phone_number")
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -150,7 +159,6 @@ public class User implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    @Column(name = "create_time")
     public String getCreateTime() {
         return createTime;
     }
@@ -159,7 +167,6 @@ public class User implements Serializable {
         this.createTime = createTime;
     }
 
-    @Column(name = "region")
     public String getRegion() {
         return region;
     }
@@ -168,7 +175,6 @@ public class User implements Serializable {
         this.region = region;
     }
 
-    @Column(name = "taste")
     public String getTaste() {
         return taste;
     }
@@ -177,7 +183,6 @@ public class User implements Serializable {
         this.taste = taste;
     }
 
-    @Column(name = "for_whom")
     public String getForWhom() {
         return forWhom;
     }
@@ -186,7 +191,6 @@ public class User implements Serializable {
         this.forWhom = forWhom;
     }
 
-    @Column(name = "my_favorite_dishes")
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "favorite_dish",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
@@ -203,7 +207,6 @@ public class User implements Serializable {
         this.myFavoriteDishes.add(dishConnection);
     }
 
-    @Column(name = "my_upload_dish")
     @OneToMany(cascade = CascadeType.PERSIST)
     public List<DishConnection> getMyUploadDish() {
         return myUploadDish;
@@ -230,7 +233,6 @@ public class User implements Serializable {
         this.myUploadMenu = myUploadMenu;
     }
 
-    @Column(name = "my_favorite_menu")
     @ManyToMany(cascade = {CascadeType.REMOVE, CascadeType.REFRESH})
     @JoinTable(name = "favorite_menu",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
@@ -243,7 +245,6 @@ public class User implements Serializable {
         this.myFavoriteMenu = myFavoriteMenu;
     }
 
-    @Column(name = "my_preference")
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "have_preference",
             joinColumns = @JoinColumn(name = "user_id"),

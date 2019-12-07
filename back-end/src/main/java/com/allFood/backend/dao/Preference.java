@@ -13,12 +13,17 @@ import java.util.Set;
 @Access(AccessType.PROPERTY)
 public class Preference {
 
+    @JsonIgnore
+    @Column(name = "preference_id")
     private Integer preferenceId;
 
+    @Column(name = "preference_name")
     private String preferenceName;
 
+    @Column(name = "taboos")
     private List<Taboo> taboos = new ArrayList<>();
 
+    @Column(name = "user_preference")
     private List<User> userPreferences = new ArrayList<>();
 
     public Preference() {
@@ -31,9 +36,7 @@ public class Preference {
     }
 
     @Id
-    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "preference_id")
     public Integer getPreferenceId() {
         return preferenceId;
     }
@@ -42,7 +45,6 @@ public class Preference {
         this.preferenceId = preferenceId;
     }
 
-    @Column(name = "preference_name")
     public String getPreferenceName() {
         return preferenceName;
     }
@@ -51,7 +53,6 @@ public class Preference {
         this.preferenceName = preferenceName;
     }
 
-    @Column(name = "taboos")
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "have_taboo",
             joinColumns = @JoinColumn(name = "preference_id", referencedColumnName = "preference_id"),
@@ -72,7 +73,6 @@ public class Preference {
         this.taboos.remove(taboo);
     }
 
-    @Column(name = "user_preference")
     @ManyToMany(targetEntity = User.class, mappedBy = "my_preference")
     public List<User> getUserPreferences() {
         return userPreferences;

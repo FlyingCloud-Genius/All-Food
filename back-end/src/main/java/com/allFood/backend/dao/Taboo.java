@@ -11,10 +11,13 @@ import java.util.List;
 @Access(AccessType.PROPERTY)
 public class Taboo {
 
+    @Column(name = "taboo_id")
     private Integer tabooId;
 
+    @Column(name = "taboo_name")
     private String taboo_name;
 
+    @Column(name = "preference")
     private List<Preference> preferences = new ArrayList<>();
 
     public Taboo() {
@@ -29,7 +32,6 @@ public class Taboo {
     @Id
     @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "taboo_id")
     public Integer getTabooId() {
         return tabooId;
     }
@@ -38,7 +40,6 @@ public class Taboo {
         this.tabooId = tabooId;
     }
 
-    @Column(name = "taboo_name")
     public String getTaboo_name() {
         return taboo_name;
     }
@@ -47,7 +48,6 @@ public class Taboo {
         this.taboo_name = taboo_name;
     }
 
-    @Column(name = "preference")
     @ManyToMany(targetEntity = Preference.class, mappedBy = "taboos")
     public List<Preference> getPreferences() {
         return preferences;
