@@ -51,8 +51,8 @@ public class User implements Serializable {
     @Column(name = "for_whom")
     private String forWhom;
 
-    @Column(name = "my_favorite_dish")
-    private List<DishConnection> myFavoriteDish = new ArrayList<>();
+    @Column(name = "my_favorite_dishes")
+    private List<DishConnection> myFavoriteDishes = new ArrayList<>();
 
     @Column(name = "my_upload_dish")
     @OneToMany(cascade = CascadeType.PERSIST)
@@ -196,16 +196,16 @@ public class User implements Serializable {
     @JoinTable(name = "favorite_dish",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id", referencedColumnName = "dish_id"))
-    public List<DishConnection> getMyFavoriteDish() {
-        return myFavoriteDish;
+    public List<DishConnection> getMyFavoriteDishes() {
+        return myFavoriteDishes;
     }
 
-    public void setMyFavoriteDish(List<DishConnection> myFavoriteDish) {
-        this.myFavoriteDish = myFavoriteDish;
+    public void setMyFavoriteDishes(List<DishConnection> myFavoriteDishes) {
+        this.myFavoriteDishes = myFavoriteDishes;
     }
 
-    public void addMyFavoriteDish(DishConnection dishConnection) {
-        this.myFavoriteDish.add(dishConnection);
+    public void addMyFavoriteDishes(DishConnection dishConnection) {
+        this.myFavoriteDishes.add(dishConnection);
     }
 
     public List<DishConnection> getMyUploadDish() {

@@ -39,7 +39,7 @@ public class DishConnection {
         this.dishId = dishId;
     }
 
-    @ManyToMany(mappedBy = "my_favorite_dish")
+    @ManyToMany(mappedBy = "my_favorite_dishes")
     public List<User> getDishLikedBy() {
         return dishLikedBy;
     }
