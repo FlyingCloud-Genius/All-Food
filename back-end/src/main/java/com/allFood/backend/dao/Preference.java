@@ -55,8 +55,8 @@ public class Preference {
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "have_taboo",
-            joinColumns = @JoinColumn(name = "preference_id", referencedColumnName = "preference_id"),
-            inverseJoinColumns = @JoinColumn(name = "taboo_id", referencedColumnName = "taboo_id"))
+            joinColumns = @JoinColumn(name = "preference_id"),
+            inverseJoinColumns = @JoinColumn(name = "taboo_id"))
     public List<Taboo> getTaboos() {
         return taboos;
     }
