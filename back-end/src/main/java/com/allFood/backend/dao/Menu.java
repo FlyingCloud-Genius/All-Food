@@ -55,8 +55,8 @@ public class Menu {
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "menu_have_dish",
-            joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "menu_id"),
-            inverseJoinColumns = @JoinColumn(name = "dish_id", referencedColumnName = "dish_id"))
+            joinColumns = @JoinColumn(name = "menu_id"),
+            inverseJoinColumns = @JoinColumn(name = "dish_id"))
     public List<DishConnection> getDishes() {
         return dishes;
     }
