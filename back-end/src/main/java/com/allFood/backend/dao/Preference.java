@@ -22,14 +22,9 @@ public class Preference {
     private String preferenceName;
 
     @Column(name = "taboos")
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(name = "have_taboo",
-            joinColumns = @JoinColumn(name = "preference_id", referencedColumnName = "preference_id"),
-            inverseJoinColumns = @JoinColumn(name = "taboo_id", referencedColumnName = "taboo_id"))
     private List<Taboo> taboos = new ArrayList<>();
 
     @Column(name = "user_preference")
-    @ManyToMany(mappedBy = "my_preference")
     private List<User> userPreferences = new ArrayList<>();
 
     public Preference() {
@@ -57,6 +52,10 @@ public class Preference {
         this.preferenceName = preferenceName;
     }
 
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "have_taboo",
+            joinColumns = @JoinColumn(name = "preference_id", referencedColumnName = "preference_id"),
+            inverseJoinColumns = @JoinColumn(name = "taboo_id", referencedColumnName = "taboo_id"))
     public List<Taboo> getTaboos() {
         return taboos;
     }
@@ -73,6 +72,7 @@ public class Preference {
         this.taboos.remove(taboo);
     }
 
+    @ManyToMany(targetEntity = User.class, mappedBy = "my_preference")
     public List<User> getUserPreferences() {
         return userPreferences;
     }
