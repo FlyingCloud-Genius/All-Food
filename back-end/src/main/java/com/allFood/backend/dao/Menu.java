@@ -26,7 +26,6 @@ public class Menu {
     private List<DishConnection> dish = new ArrayList<>();
 
     @Column(name = "menu_liked_by")
-    @ManyToMany(mappedBy = "my_favorite_menu")
     private List<User> menuLikedBy = new ArrayList<>();
 
     public Long getMenuId() {
@@ -69,6 +68,7 @@ public class Menu {
         this.dish.add(dishConnection);
     }
 
+    @ManyToMany(mappedBy = "my_favorite_menu")
     public List<User> getMenuLikedBy() {
         return menuLikedBy;
     }
