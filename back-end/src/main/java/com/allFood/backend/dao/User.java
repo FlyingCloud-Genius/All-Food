@@ -20,7 +20,7 @@ public class User implements Serializable {
     @Column(name = "user_name")
     private String userName;
 
-    @Column(name = "passsword")
+    @Column(name = "password")
     @JsonIgnore
     private String password;
 
