@@ -52,6 +52,7 @@ public class Preference {
         this.preferenceName = preferenceName;
     }
 
+    @Access(AccessType.PROPERTY)
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "have_taboo",
             joinColumns = @JoinColumn(name = "preference_id", referencedColumnName = "preference_id"),

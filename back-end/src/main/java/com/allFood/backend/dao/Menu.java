@@ -52,6 +52,7 @@ public class Menu {
         this.description = description;
     }
 
+    @Access(AccessType.PROPERTY)
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "menu_have_dish",
             joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "menu_id"),
