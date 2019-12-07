@@ -69,6 +69,7 @@ public class Menu {
         this.dishes.add(dishConnection);
     }
 
+    @Access(AccessType.PROPERTY)
     @ManyToMany(targetEntity = User.class, mappedBy = "my_favorite_menu")
     public List<User> getMenuLikedBy() {
         return menuLikedBy;
