@@ -55,11 +55,9 @@ public class User implements Serializable {
     private List<DishConnection> myFavoriteDishes = new ArrayList<>();
 
     @Column(name = "my_upload_dish")
-    @OneToMany(cascade = CascadeType.PERSIST)
     private List<DishConnection> myUploadDish = new ArrayList<>();
 
     @Column(name = "my_upload_menu")
-    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.REMOVE})
     private List<Menu> myUploadMenu = new ArrayList<>();
 
     @Column(name = "my_favorite_menu")
@@ -208,6 +206,7 @@ public class User implements Serializable {
         this.myFavoriteDishes.add(dishConnection);
     }
 
+    @OneToMany(cascade = CascadeType.PERSIST)
     public List<DishConnection> getMyUploadDish() {
         return myUploadDish;
     }
@@ -220,6 +219,7 @@ public class User implements Serializable {
         this.myUploadDish = myUploadDish;
     }
 
+    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.REMOVE})
     public List<Menu> getMyUploadMenu() {
         return myUploadMenu;
     }
