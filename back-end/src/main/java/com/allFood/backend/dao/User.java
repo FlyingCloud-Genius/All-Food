@@ -234,8 +234,8 @@ public class User implements Serializable {
 
     @ManyToMany(cascade = {CascadeType.REMOVE, CascadeType.REFRESH})
     @JoinTable(name = "favorite_menu",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "menu_id"))
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "menu_id"))
     public List<Menu> getMyFavoriteMenu() {
         return myFavoriteMenu;
     }
@@ -247,7 +247,7 @@ public class User implements Serializable {
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "have_preference",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "preferenceId"))
+            inverseJoinColumns = @JoinColumn(name = "preference_id"))
     public List<Preference> getMyPreference() {
         return myPreference;
     }
