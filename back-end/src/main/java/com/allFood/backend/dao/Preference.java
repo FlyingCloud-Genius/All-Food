@@ -25,7 +25,6 @@ public class Preference {
     private List<Taboo> taboos = new ArrayList<>();
 
     @Column(name = "user_preference")
-    @ManyToMany(mappedBy = "my_preference")
     private List<User> userPreferences = new ArrayList<>();
 
     public Preference() {
@@ -61,7 +60,7 @@ public class Preference {
         return taboos;
     }
 
-    public void setTaboo(List<Taboo> taboos) {
+    public void setTaboos(List<Taboo> taboos) {
         this.taboos = taboos;
     }
 
@@ -71,5 +70,14 @@ public class Preference {
 
     public void removeTaboo(Taboo taboo) {
         this.taboos.remove(taboo);
+    }
+
+    @ManyToMany(mappedBy = "my_preference")
+    public List<User> getUserPreferences() {
+        return userPreferences;
+    }
+
+    public void setUserPreferences(List<User> userPreferences) {
+        this.userPreferences = userPreferences;
     }
 }
