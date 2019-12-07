@@ -244,6 +244,10 @@ public class User implements Serializable {
         this.myFavoriteMenu = myFavoriteMenu;
     }
 
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "have_preference",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "preferenceId"))
     public List<Preference> getMyPreference() {
         return myPreference;
     }

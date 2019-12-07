@@ -24,6 +24,10 @@ public class Preference {
     @Column(name = "taboos")
     private List<Taboo> taboos = new ArrayList<>();
 
+    @Column(name = "user_preference")
+    @ManyToMany(mappedBy = "my_preference")
+    private List<User> userPreferences = new ArrayList<>();
+
     public Preference() {
     }
 
