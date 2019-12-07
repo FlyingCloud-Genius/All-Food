@@ -9,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "db_user")
+@Access(AccessType.PROPERTY)
 public class User implements Serializable {
 
     @Id
@@ -190,7 +191,6 @@ public class User implements Serializable {
         this.forWhom = forWhom;
     }
 
-    @Access(AccessType.PROPERTY)
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "favorite_dish",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
@@ -207,7 +207,6 @@ public class User implements Serializable {
         this.myFavoriteDishes.add(dishConnection);
     }
 
-    @Access(AccessType.PROPERTY)
     @OneToMany(cascade = CascadeType.PERSIST)
     public List<DishConnection> getMyUploadDish() {
         return myUploadDish;
@@ -221,7 +220,6 @@ public class User implements Serializable {
         this.myUploadDish = myUploadDish;
     }
 
-    @Access(AccessType.PROPERTY)
     @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.REMOVE})
     public List<Menu> getMyUploadMenu() {
         return myUploadMenu;
@@ -235,7 +233,6 @@ public class User implements Serializable {
         this.myUploadMenu = myUploadMenu;
     }
 
-    @Access(AccessType.PROPERTY)
     @ManyToMany(cascade = {CascadeType.REMOVE, CascadeType.REFRESH})
     @JoinTable(name = "favorite_menu",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
@@ -248,7 +245,6 @@ public class User implements Serializable {
         this.myFavoriteMenu = myFavoriteMenu;
     }
 
-    @Access(AccessType.PROPERTY)
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "have_preference",
             joinColumns = @JoinColumn(name = "user_id"),

@@ -6,6 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "dish")
+@Access(AccessType.PROPERTY)
 public class DishConnection {
 
     @Id
@@ -39,7 +40,6 @@ public class DishConnection {
         this.dishId = dishId;
     }
 
-    @Access(AccessType.PROPERTY)
     @ManyToMany(targetEntity = User.class, mappedBy = "my_favorite_dishes")
     public List<User> getDishLikedBy() {
         return dishLikedBy;
@@ -49,7 +49,6 @@ public class DishConnection {
         this.dishLikedBy = dishLikedBy;
     }
 
-    @Access(AccessType.PROPERTY)
     @ManyToMany(targetEntity = Menu.class, mappedBy = "have_dishes")
     public List<Menu> getDishInMenu() {
         return dishInMenu;

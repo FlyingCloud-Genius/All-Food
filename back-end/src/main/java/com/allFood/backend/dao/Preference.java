@@ -10,6 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "preference")
+@Access(AccessType.PROPERTY)
 public class Preference {
 
     @Id
@@ -52,7 +53,6 @@ public class Preference {
         this.preferenceName = preferenceName;
     }
 
-    @Access(AccessType.PROPERTY)
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "have_taboo",
             joinColumns = @JoinColumn(name = "preference_id", referencedColumnName = "preference_id"),

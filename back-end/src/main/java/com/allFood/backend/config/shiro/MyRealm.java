@@ -3,7 +3,6 @@ package com.allFood.backend.config.shiro;
 import com.allFood.backend.config.shiro.security.JwtToken;
 import com.allFood.backend.config.shiro.security.JwtUtil;
 import com.allFood.backend.config.shiro.security.SecurityConst;
-import com.allFood.backend.dao.User;
 import com.allFood.backend.service.UserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -17,10 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Service
 public class MyRealm extends AuthorizingRealm {

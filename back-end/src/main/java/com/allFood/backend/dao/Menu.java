@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "menu")
+@Access(AccessType.PROPERTY)
 public class Menu {
 
     @Id
@@ -52,7 +53,6 @@ public class Menu {
         this.description = description;
     }
 
-    @Access(AccessType.PROPERTY)
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "menu_have_dish",
             joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "menu_id"),
@@ -69,7 +69,6 @@ public class Menu {
         this.dishes.add(dishConnection);
     }
 
-    @Access(AccessType.PROPERTY)
     @ManyToMany(targetEntity = User.class, mappedBy = "my_favorite_menu")
     public List<User> getMenuLikedBy() {
         return menuLikedBy;
