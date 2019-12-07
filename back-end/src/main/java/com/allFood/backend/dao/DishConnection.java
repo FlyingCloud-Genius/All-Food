@@ -39,7 +39,7 @@ public class DishConnection {
         this.dishId = dishId;
     }
 
-    @ManyToMany(targetEntity = User.class, mappedBy = "my_favorite_dishes")
+    @ManyToMany(targetEntity = User.class, mappedBy = "myFavoriteDishes")
     public List<User> getDishLikedBy() {
         return dishLikedBy;
     }
@@ -48,7 +48,7 @@ public class DishConnection {
         this.dishLikedBy = dishLikedBy;
     }
 
-    @ManyToMany(targetEntity = Menu.class, mappedBy = "have_dishes")
+    @ManyToMany(targetEntity = Menu.class, mappedBy = "dishes")
     public List<Menu> getDishInMenu() {
         return dishInMenu;
     }

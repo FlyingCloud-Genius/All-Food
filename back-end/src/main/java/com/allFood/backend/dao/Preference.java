@@ -72,7 +72,7 @@ public class Preference {
         this.taboos.remove(taboo);
     }
 
-    @ManyToMany(targetEntity = User.class, mappedBy = "my_preference")
+    @ManyToMany(targetEntity = User.class, mappedBy = "myPreference")
     public List<User> getUserPreferences() {
         return userPreferences;
     }
