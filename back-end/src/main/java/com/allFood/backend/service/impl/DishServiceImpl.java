@@ -36,6 +36,7 @@ public class DishServiceImpl implements DishService {
             LOGGER.info("inserting dish with dish_id: " + dish.getDishId() + " and dish_name: " + dish.getDishName());
             return true;
         } else {
+            LOGGER.error(DBdish.toString());
             return false;
         }
     }
