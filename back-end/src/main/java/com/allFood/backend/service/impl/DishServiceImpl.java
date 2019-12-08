@@ -30,7 +30,7 @@ public class DishServiceImpl implements DishService {
     @Override
     public boolean insertDish(Dish dish) {
         Dish DBdish = dishRepository.findByDishId(dish.getDishId());
-        if (DBdish == null) {
+        if (DBdish.getDishId() == null) {
             dishRepository.save(dish);
             dishConnectionRepository.save(new DishConnection(dish.getDishId()));
             LOGGER.info("inserting dish with dish_id: " + dish.getDishId() + " and dish_name: " + dish.getDishName());

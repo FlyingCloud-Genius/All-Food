@@ -22,7 +22,7 @@ public class Dish {
 
     private String description;
 
-    private Integer visitTImes;
+    private Integer visitTimes;
 
     private Nutrition nutrition;
 
@@ -80,12 +80,12 @@ public class Dish {
         this.description = description;
     }
 
-    public Integer getVisitTImes() {
-        return visitTImes;
+    public Integer getVisitTimes() {
+        return visitTimes;
     }
 
-    public void setVisitTImes(Integer visitTImes) {
-        this.visitTImes = visitTImes;
+    public void setVisitTimes(Integer visitTimes) {
+        this.visitTimes = visitTimes;
     }
 
     public Nutrition getNutrition() {
@@ -129,7 +129,7 @@ public class Dish {
                 ", steps=" + steps +
                 ", submitTime='" + submitTime + '\'' +
                 ", description='" + description + '\'' +
-                ", visitTImes=" + visitTImes +
+                ", visitTImes=" + visitTimes +
                 ", nutrition=" + nutrition +
                 ", ingredient=" + ingredient +
                 ", tag=" + tag +
