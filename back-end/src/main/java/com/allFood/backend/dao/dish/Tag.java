@@ -16,11 +16,11 @@ public class Tag {
 
     private List<String> festival;
 
-    private List<String> specialElement;
+    private List<Integer> specialElement;
 
     private boolean easy;
 
-    public Tag(List<String> taste, List<String> region, List<String> dishType, List<String> targetPeople, List<String> nutritionLimitation, List<String> festival, List<String> specialElement, boolean easy) {
+    public Tag(List<String> taste, List<String> region, List<String> dishType, List<String> targetPeople, List<String> nutritionLimitation, List<String> festival, List<Integer> specialElement, boolean easy) {
         this.taste = taste;
         this.region = region;
         this.dishType = dishType;
@@ -82,11 +82,11 @@ public class Tag {
         this.festival = festival;
     }
 
-    public List<String> getSpecialElement() {
+    public List<Integer> getSpecialElement() {
         return specialElement;
     }
 
-    public void setSpecialElement(List<String> specialElement) {
+    public void setSpecialElement(List<Integer> specialElement) {
         this.specialElement = specialElement;
     }
 
