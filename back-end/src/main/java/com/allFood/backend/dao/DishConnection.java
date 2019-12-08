@@ -9,6 +9,7 @@ import java.util.List;
 public class DishConnection {
 
     @Column(name = "dish_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long dishId; // corresponded id in mongo db
 
     @Column(name = "dish_liked_by")
@@ -55,5 +56,14 @@ public class DishConnection {
 
     public void setDishInMenu(List<Menu> dishInMenu) {
         this.dishInMenu = dishInMenu;
+    }
+
+    @Override
+    public String toString() {
+        return "DishConnection{" +
+                "dishId=" + dishId +
+                ", dishLikedBy=" + dishLikedBy +
+                ", dishInMenu=" + dishInMenu +
+                '}';
     }
 }

@@ -33,6 +33,7 @@ public class DishServiceImpl implements DishService {
         if (DBdish.getDishId() == null) {
             dishRepository.save(dish);
             DishConnection SQLdish = new DishConnection(dish.getDishId());
+            LOGGER.info("dish connection with: "+ SQLdish.toString());
             dishConnectionRepository.save(SQLdish);
             LOGGER.info("inserting dish with dish_id: " + dish.getDishId() + " and dish_name: " + dish.getDishName());
             return true;
