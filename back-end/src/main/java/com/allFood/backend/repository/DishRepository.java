@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface DishRepository extends MongoRepository<Dish, Long> {
 
     Dish findByDishName(String dishName);
+
+    Dish findByDishId(Long dishId);
 }
