@@ -31,6 +31,8 @@ public class Dish {
 
     private Tag tag;
 
+    private List<Integer> tagSummary;
+
     public Long getDishId() {
         return dishId;
     }
@@ -109,5 +111,13 @@ public class Dish {
 
     public void setTag(Tag tag) {
         this.tag = tag;
+    }
+
+    public List<Integer> getTagSummary() {
+        return tagSummary;
+    }
+
+    public void setTagSummary(List<Integer> tagSummary) {
+        this.tagSummary = tagSummary;
     }
 }
