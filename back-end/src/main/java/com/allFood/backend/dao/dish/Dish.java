@@ -9,7 +9,6 @@ import java.util.List;
 @Document(collection = "dish")
 public class Dish {
 
-    @JsonIgnore
     private Long dishId;
 
     private String dishName;
