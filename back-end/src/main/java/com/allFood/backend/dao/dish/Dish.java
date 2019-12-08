@@ -119,4 +119,21 @@ public class Dish {
     public void setTagSummary(List<Integer> tagSummary) {
         this.tagSummary = tagSummary;
     }
+
+    @Override
+    public String toString() {
+        return "Dish{" +
+                "dishId=" + dishId +
+                ", dishName='" + dishName + '\'' +
+                ", cookingTime=" + cookingTime +
+                ", steps=" + steps +
+                ", submitTime='" + submitTime + '\'' +
+                ", description='" + description + '\'' +
+                ", visitTImes=" + visitTImes +
+                ", nutrition=" + nutrition +
+                ", ingredient=" + ingredient +
+                ", tag=" + tag +
+                ", tagSummary=" + tagSummary +
+                '}';
+    }
 }
