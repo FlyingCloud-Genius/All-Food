@@ -30,18 +30,16 @@ public class DishServiceImpl implements DishService {
     @Override
     public boolean insertDish(Dish dish) {
         LOGGER.info("current dish id: "+ dish.getDishId());
-        Dish DBdish = dishRepository.findByDishId(dish.getDishId());
-        if (DBdish == null && DBdish.getDishId() == null) {
-            dishRepository.save(dish);
-            DishConnection SQLdish = new DishConnection(dish.getDishId());
-            LOGGER.info("dish connection with: "+ SQLdish.toString());
-            dishConnectionRepository.save(SQLdish);
-            LOGGER.info("inserting dish with dish_id: " + dish.getDishId() + " and dish_name: " + dish.getDishName());
-            return true;
-        } else {
-            LOGGER.error(DBdish.toString());
-            return false;
-        }
+        dishRepository.save(dish);
+        DishConnection SQLdish = new DishConnection(dish.getDishId());
+        LOGGER.info("dish connection with: "+ SQLdish.toString());
+        dishConnectionRepository.save(SQLdish);
+        LOGGER.info("inserting dish with dish_id: " + dish.getDishId() + " and dish_name: " + dish.getDishName());
+        return true;
+//        } else {
+//            LOGGER.error(DBdish.toString());
+//            return false;
+//        }
     }
 
     @Override
