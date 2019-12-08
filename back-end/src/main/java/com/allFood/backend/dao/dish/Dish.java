@@ -9,7 +9,6 @@ import java.util.List;
 @Document(collection = "dish")
 public class Dish {
 
-    @AutoIncrement
     @JsonIgnore
     private Long dishId;
 

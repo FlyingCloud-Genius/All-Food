@@ -31,9 +31,9 @@ public class DishServiceImpl implements DishService {
     public boolean insertDish(Dish dish) {
         Dish DBdish = dishRepository.findByDishName(dish.getDishName());
         if (DBdish == null) {
-            DBdish = dishRepository.save(dish);
-            dishConnectionRepository.save(new DishConnection(DBdish.getDishId()));
-            LOGGER.info("inserting dish with dish_id: " + DBdish.getDishId() + " and dish_name: " + DBdish.getDishName());
+            dishRepository.save(dish);
+            dishConnectionRepository.save(new DishConnection(dish.getDishId()));
+            LOGGER.info("inserting dish with dish_id: " + dish.getDishId() + " and dish_name: " + dish.getDishName());
             return true;
         } else {
             return false;
