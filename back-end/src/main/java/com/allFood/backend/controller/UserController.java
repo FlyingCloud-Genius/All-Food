@@ -1,6 +1,7 @@
 package com.allFood.backend.controller;
 
 import com.allFood.backend.dao.User;
+import com.allFood.backend.dao.dish.Dish;
 import com.allFood.backend.request.AddUserRequest;
 import com.allFood.backend.request.LogInRequest;
 import com.allFood.backend.response.DataResponse;
@@ -67,15 +68,19 @@ public class UserController {
         return new DataResponse(user);
     }
 
-    @PostMapping(value = "/favorite_dish")
-    public Response createFavoriteDish() {
-        return null;
-    }
-
     @PutMapping(value = "/favorite_dish")
     public Response addFavoriteDish() {
         return null;
     }
 
+    @PostMapping(value = "/upload_dish")
+    public Response uploadDish(Dish dish) {
+        return null;
+    }
+
+    @PostMapping(value = "/upload_menu")
+    public Response uploadMenu(@RequestBody Map request) {
+        return null;
+    }
 
 }

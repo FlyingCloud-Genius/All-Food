@@ -2,7 +2,10 @@ package com.allFood.backend.service.impl;
 
 import com.allFood.backend.config.redis.RedisClientTemplate;
 import com.allFood.backend.config.shiro.security.JwtUtil;
+import com.allFood.backend.dao.Menu;
 import com.allFood.backend.dao.User;
+import com.allFood.backend.dao.dish.Dish;
+import com.allFood.backend.repository.MenuRepository;
 import com.allFood.backend.repository.UserRepository;
 import com.allFood.backend.request.AddUserRequest;
 import com.allFood.backend.service.UserService;
@@ -24,10 +27,13 @@ public class UserServiceImpl implements UserService {
 
     private RedisClientTemplate redisClientTemplate;
 
+    private MenuRepository menuRepository;
+
     @Autowired
-    UserServiceImpl(UserRepository userRepository, RedisClientTemplate redisClientTemplate) {
+    UserServiceImpl(UserRepository userRepository, RedisClientTemplate redisClientTemplate, MenuRepository menuRepository) {
         this.userRepository = userRepository;
         this.redisClientTemplate = redisClientTemplate;
+        this.menuRepository = menuRepository;
     }
 
     @Override
@@ -120,5 +126,25 @@ public class UserServiceImpl implements UserService {
         }
         userRepository.saveAndFlush(userTemp);
         return userTemp;
+    }
+
+    @Override
+    public boolean addFavoriteDish(String dishName) {
+        return false;
+    }
+
+    @Override
+    public boolean addFavoriteMenu(String menuName) {
+        return false;
+    }
+
+    @Override
+    public boolean uploadDish(Dish dish) {
+        return false;
+    }
+
+    @Override
+    public boolean uploadMenu(Menu menu) {
+        return false;
     }
 }
