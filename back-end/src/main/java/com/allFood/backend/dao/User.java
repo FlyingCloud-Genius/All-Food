@@ -1,6 +1,7 @@
 package com.allFood.backend.dao;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,6 +17,7 @@ public class User implements Serializable {
     private Long userId;
 
     @Column(name = "user_name")
+    @UniqueElements
     private String userName;
 
     @Column(name = "password")
