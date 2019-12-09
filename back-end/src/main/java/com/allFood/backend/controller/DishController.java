@@ -1,6 +1,7 @@
 package com.allFood.backend.controller;
 
 import com.allFood.backend.dao.dish.Dish;
+import com.allFood.backend.response.DataResponse;
 import com.allFood.backend.response.ErrorResponse;
 import com.allFood.backend.response.Response;
 import com.allFood.backend.response.SuccessResponse;
@@ -9,15 +10,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/dish")
 public class DishController {
 
     private ObjectMapper objectMapper;
@@ -47,4 +45,23 @@ public class DishController {
         }
         return new ErrorResponse(504, "insertion failed");
     }
+
+    @GetMapping(value = "/dish/limit")
+    public Response getDishes(int start, int end) {
+        List<Dish> result = dishService.findDishes(start, end);
+        if (result == null) {
+            return new ErrorResponse(500, "no dish found");
+        }
+        return new DataResponse(result);
+    }
+
+    @GetMapping(value = "/dish/param")
+    public Response getData(int limit) {
+        List<Dish> result = dishService.findDishes(0, limit);
+        if (result == null) {
+            return new ErrorResponse(500, "no dish found");
+        }
+        return new DataResponse(result);
+    }
+
 }

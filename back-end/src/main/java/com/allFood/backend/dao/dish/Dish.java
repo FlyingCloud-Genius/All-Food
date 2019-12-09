@@ -1,7 +1,5 @@
 package com.allFood.backend.dao.dish;
 
-import com.allFood.backend.util.annotation.AutoIncrement;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;

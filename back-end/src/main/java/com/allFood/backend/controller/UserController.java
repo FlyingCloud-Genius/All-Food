@@ -30,6 +30,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/user/{userName}")
+    @RequiresAuthentication
     public Response getUser(@PathVariable String userName) {
         User userTemp = userService.getUserInfo(userName);
         if (userTemp == null) {
@@ -65,4 +66,16 @@ public class UserController {
         }
         return new DataResponse(user);
     }
+
+    @PostMapping(value = "/favorite_dish")
+    public Response createFavoriteDish() {
+        return null;
+    }
+
+    @PutMapping(value = "/favorite_dish")
+    public Response addFavoriteDish() {
+        return null;
+    }
+
+
 }

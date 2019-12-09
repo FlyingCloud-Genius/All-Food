@@ -4,6 +4,7 @@ import com.allFood.backend.dao.DishConnection;
 import com.allFood.backend.dao.dish.Dish;
 import com.allFood.backend.repository.DishConnectionRepository;
 import com.allFood.backend.repository.DishRepository;
+import com.allFood.backend.repository.MongoOperation;
 import com.allFood.backend.service.DishService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +22,14 @@ public class DishServiceImpl implements DishService {
 
     private DishConnectionRepository dishConnectionRepository;
 
+    private MongoOperation mongoOperation;
+
     @Autowired
-    DishServiceImpl(DishRepository dishRepository, DishConnectionRepository dishConnectionRepository) {
+    DishServiceImpl(DishRepository dishRepository, DishConnectionRepository dishConnectionRepository,
+                    MongoOperation mongoOperation) {
         this.dishRepository = dishRepository;
         this.dishConnectionRepository = dishConnectionRepository;
+        this.mongoOperation = mongoOperation;
     }
 
     @Override
@@ -49,5 +54,15 @@ public class DishServiceImpl implements DishService {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public List<Dish> findDishes(int start, int end) {
+        return mongoOperation.getDishes(start, end);
+    }
+
+    @Override
+    public List<Dish> getData(int limit) {
+        return mongoOperation.getDishes(0, limit);
     }
 }
