@@ -34,7 +34,7 @@ public class MenuController {
         return new ErrorResponse(400, "menuName or dishName not exists!");
     }
 
-    @GetMapping(value = "/dish/param")
+    @GetMapping(value = "/menu/param")
     public Response getMenu(int start, int limit) {
         List<Menu> menus = menuService.showMenus(start, limit);
         if (menus == null) {
@@ -43,7 +43,7 @@ public class MenuController {
         return new DataResponse(menus);
     }
 
-    @GetMapping(value = "/dish/{menuName}")
+    @GetMapping(value = "/menu/{menuName}")
     public Response findMenuName(@PathVariable String menuName) {
         List<Menu> menus = menuService.findMenu(menuName);
         if (menus == null) {
