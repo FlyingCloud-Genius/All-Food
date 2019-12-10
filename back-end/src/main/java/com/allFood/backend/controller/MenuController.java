@@ -1,14 +1,15 @@
 package com.allFood.backend.controller;
 
+import com.allFood.backend.dao.Menu;
+import com.allFood.backend.response.DataResponse;
 import com.allFood.backend.response.ErrorResponse;
 import com.allFood.backend.response.Response;
 import com.allFood.backend.response.SuccessResponse;
 import com.allFood.backend.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -31,5 +32,23 @@ public class MenuController {
             }
         }
         return new ErrorResponse(400, "menuName or dishName not exists!");
+    }
+
+    @GetMapping(value = "/dish/param")
+    public Response getMenu(int start, int limit) {
+        List<Menu> menus = menuService.showMenus(start, limit);
+        if (menus == null) {
+            return new ErrorResponse(400, "menus not found");
+        }
+        return new DataResponse(menus);
+    }
+
+    @GetMapping(value = "/dish/{menuName}")
+    public Response findMenuName(@PathVariable String menuName) {
+        List<Menu> menus = menuService.findMenu(menuName);
+        if (menus == null) {
+            return new ErrorResponse(400, "menus not found");
+        }
+        return new DataResponse(menus);
     }
 }

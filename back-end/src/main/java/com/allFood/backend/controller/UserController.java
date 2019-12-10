@@ -1,5 +1,6 @@
 package com.allFood.backend.controller;
 
+import com.allFood.backend.dao.Menu;
 import com.allFood.backend.dao.User;
 import com.allFood.backend.dao.dish.Dish;
 import com.allFood.backend.request.AddUserRequest;
@@ -69,18 +70,55 @@ public class UserController {
     }
 
     @PutMapping(value = "/favorite_dish")
-    public Response addFavoriteDish() {
-        return null;
+    public Response addFavoriteDish(@RequestBody Map request) {
+        String userName = request.get("userName").toString();
+        String dishName = request.get("dishName").toString();
+        if (userName == null || dishName == null) {
+            return new ErrorResponse(400,"user name or dish name not exist");
+        }
+        if (userService.addFavoriteDish(userName, dishName)) {
+            return new SuccessResponse(200, "successfully add favorite dish");
+        }
+        return new ErrorResponse(400, "add dish failed");
+    }
+
+    @PutMapping(value = "/favorite_menu")
+    public Response addFavoriteMenu(@RequestBody Map request) {
+        String userName = request.get("userName").toString();
+        String menuName = request.get("dishName").toString();
+        if (userName == null || menuName == null) {
+            return new ErrorResponse(400,"user name or dish name not exist");
+        }
+        if (userService.addFavoriteMenu(userName, menuName)) {
+            return new SuccessResponse(200, "successfully add favorite dish");
+        }
+        return new ErrorResponse(400, "add dish failed");
     }
 
     @PostMapping(value = "/upload_dish")
-    public Response uploadDish(Dish dish) {
-        return null;
+    public Response uploadDish(@RequestBody Map request) {
+        String userName = request.get("userName").toString();
+        Dish dish = (Dish) request.get("dish");
+        if (userName == null || dish.getDishName() == null) {
+            return new ErrorResponse(400,"user name or dish name not exist");
+        }
+        if (userService.uploadDish(userName, dish)) {
+            return new SuccessResponse(200, "successfully add favorite dish");
+        }
+        return new ErrorResponse(400, "add dish failed");
     }
 
     @PostMapping(value = "/upload_menu")
     public Response uploadMenu(@RequestBody Map request) {
-        return null;
+        String userName = request.get("userName").toString();
+        Menu menu = (Menu) request.get("menu");
+        if (userName == null || menu.getMenuName() == null) {
+            return new ErrorResponse(400,"user name or dish name not exist");
+        }
+        if (userService.uploadMenu(userName, menu)) {
+            return new SuccessResponse(200, "successfully add favorite dish");
+        }
+        return new ErrorResponse(400, "add dish failed");
     }
 
 }

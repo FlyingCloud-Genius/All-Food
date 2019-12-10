@@ -14,7 +14,7 @@ public class Taboo {
     private Integer tabooId;
 
     @Column(name = "taboo_name")
-    private String taboo_name;
+    private String tabooName;
 
     @Column(name = "preference")
     private List<Preference> preferences = new ArrayList<>();
@@ -22,9 +22,9 @@ public class Taboo {
     public Taboo() {
     }
 
-    public Taboo(Integer tabooId, String taboo_name, List<Preference> preferences) {
+    public Taboo(Integer tabooId, String tabooName, List<Preference> preferences) {
         this.tabooId = tabooId;
-        this.taboo_name = taboo_name;
+        this.tabooName = tabooName;
         this.preferences = preferences;
     }
 
@@ -39,12 +39,12 @@ public class Taboo {
         this.tabooId = tabooId;
     }
 
-    public String getTaboo_name() {
-        return taboo_name;
+    public String getTabooName() {
+        return tabooName;
     }
 
-    public void setTaboo_name(String taboo_name) {
-        this.taboo_name = taboo_name;
+    public void setTabooName(String tabooName) {
+        this.tabooName = tabooName;
     }
 
     @ManyToMany(targetEntity = Preference.class, mappedBy = "taboos")

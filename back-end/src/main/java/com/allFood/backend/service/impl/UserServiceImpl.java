@@ -2,9 +2,12 @@ package com.allFood.backend.service.impl;
 
 import com.allFood.backend.config.redis.RedisClientTemplate;
 import com.allFood.backend.config.shiro.security.JwtUtil;
+import com.allFood.backend.dao.DishConnection;
 import com.allFood.backend.dao.Menu;
 import com.allFood.backend.dao.User;
 import com.allFood.backend.dao.dish.Dish;
+import com.allFood.backend.repository.DishConnectionRepository;
+import com.allFood.backend.repository.DishRepository;
 import com.allFood.backend.repository.MenuRepository;
 import com.allFood.backend.repository.UserRepository;
 import com.allFood.backend.request.AddUserRequest;
@@ -15,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,17 +27,26 @@ public class UserServiceImpl implements UserService {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
+    private static Long dishId = Long.valueOf(100000);
+
     private UserRepository userRepository;
 
     private RedisClientTemplate redisClientTemplate;
 
     private MenuRepository menuRepository;
 
+    private DishRepository dishRepository;
+
+    private DishConnectionRepository dishConnectionRepository;
+
     @Autowired
-    UserServiceImpl(UserRepository userRepository, RedisClientTemplate redisClientTemplate, MenuRepository menuRepository) {
+    UserServiceImpl(UserRepository userRepository, RedisClientTemplate redisClientTemplate,
+                    MenuRepository menuRepository, DishRepository dishRepository, DishConnectionRepository dishConnectionRepository) {
         this.userRepository = userRepository;
         this.redisClientTemplate = redisClientTemplate;
         this.menuRepository = menuRepository;
+        this.dishRepository = dishRepository;
+        this.dishConnectionRepository = dishConnectionRepository;
     }
 
     @Override
@@ -129,22 +142,64 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean addFavoriteDish(String dishName) {
-        return false;
+    public boolean addFavoriteDish(String userName, String dishName) {
+        User user = userRepository.findByUserName(userName);
+        Dish dish = dishRepository.findByDishName(dishName);
+        if (dish.getDishName() == null || user.getUserName() == null) {
+            return false;
+        }
+        if (user.getMyFavoriteDishes() == null) {
+            user.setMyFavoriteDishes(new ArrayList<>());
+        }
+        user.addMyFavoriteDishes(dishConnectionRepository.findBydishId(dish.getDishId()));
+        userRepository.saveAndFlush(user);
+        return true;
     }
 
     @Override
-    public boolean addFavoriteMenu(String menuName) {
-        return false;
+    public boolean addFavoriteMenu(String userName, String menuName) {
+        User user = userRepository.findByUserName(userName);
+        Menu menu = menuRepository.findByMenuName(menuName);
+        if (menu.getMenuName() == null || user.getUserName() == null) {
+            return false;
+        }
+        if (user.getMyFavoriteMenu() == null) {
+            user.setMyFavoriteMenu(new ArrayList<>());
+        }
+        user.addMyFavoriteMenu(menu);
+        userRepository.saveAndFlush(user);
+        return true;
     }
 
     @Override
-    public boolean uploadDish(Dish dish) {
-        return false;
+    public boolean uploadDish(String userName, Dish dish) {
+        User user = userRepository.findByUserName(userName);
+        if (user.getUserName() == null) {
+            return false;
+        }
+        dish.setDishId(dishId++);
+        dishRepository.save(dish);
+        DishConnection dishConnection = new DishConnection(dish.getDishId());
+        dishConnection = dishConnectionRepository.saveAndFlush(dishConnection);
+        if (user.getMyUploadDish() == null) {
+            user.setMyUploadDish(new ArrayList<>());
+        }
+        user.uploadDish(dishConnection);
+        return true;
     }
 
     @Override
-    public boolean uploadMenu(Menu menu) {
-        return false;
+    public boolean uploadMenu(String userName, Menu menu) {
+        User user = userRepository.findByUserName(userName);
+        if (user.getUserName() == null) {
+            return false;
+        }
+        menu = menuRepository.saveAndFlush(menu);
+        if (user.getMyUploadMenu() == null) {
+            user.setMyUploadMenu(new ArrayList<>());
+        }
+        user.uploadMenu(menu);
+        return true;
+
     }
 }

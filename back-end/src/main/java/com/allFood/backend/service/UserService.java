@@ -21,11 +21,11 @@ public interface UserService {
 
     User updateInformation(User user);
 
-    boolean addFavoriteDish(String dishName);
+    boolean addFavoriteDish(String userName, String dishName);
 
-    boolean addFavoriteMenu(String menuName);
+    boolean addFavoriteMenu(String userName, String menuName);
 
-    boolean uploadDish(Dish dish);
+    boolean uploadDish(String userName, Dish dish);
 
-    boolean uploadMenu(Menu menu);
+    boolean uploadMenu(String userName, Menu menu);
 }

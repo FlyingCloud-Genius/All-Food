@@ -226,7 +226,7 @@ public class User implements Serializable {
         return myUploadMenu;
     }
 
-    public void addMenu(Menu menu) {
+    public void uploadMenu(Menu menu) {
         this.myUploadMenu.add(menu);
     }
 
@@ -244,6 +244,10 @@ public class User implements Serializable {
 
     public void setMyFavoriteMenu(List<Menu> myFavoriteMenu) {
         this.myFavoriteMenu = myFavoriteMenu;
+    }
+
+    public void addMyFavoriteMenu(Menu menu) {
+        this.myFavoriteMenu.add(menu);
     }
 
     @ManyToMany(cascade = CascadeType.PERSIST)
