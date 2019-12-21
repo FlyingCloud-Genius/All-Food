@@ -3,8 +3,7 @@ package com.allFood.backend.controller;
 import com.allFood.backend.dao.Menu;
 import com.allFood.backend.dao.User;
 import com.allFood.backend.dao.dish.Dish;
-import com.allFood.backend.request.AddUserRequest;
-import com.allFood.backend.request.LogInRequest;
+import com.allFood.backend.request.*;
 import com.allFood.backend.response.DataResponse;
 import com.allFood.backend.response.ErrorResponse;
 import com.allFood.backend.response.Response;
@@ -71,11 +70,9 @@ public class UserController {
     }
 
     @PutMapping(value = "/favorite_dish")
-    public Response addFavoriteDish(@RequestParam Map request) {
-        LOGGER.info("userName: "+ request.get("userName"));
-        LOGGER.info("dishName: "+ request.get("dishName"));
-        String userName = (String) request.get("userName");
-        String dishName = (String) request.get("dishName");
+    public Response addFavoriteDish(@RequestBody AddFavoriteDishRequest request) {
+        String userName = request.getUserName();
+        String dishName = request.getDishName();
         if (userName == null || dishName == null) {
             return new ErrorResponse(400,"user name or dish name not exist");
         }
@@ -86,9 +83,9 @@ public class UserController {
     }
 
     @PutMapping(value = "/favorite_menu")
-    public Response addFavoriteMenu(@RequestParam Map<String, String> request) {
-        String userName = request.get("userName");
-        String menuName = request.get("dishName");
+    public Response addFavoriteMenu(@RequestBody AddFavoriteMenuRequest request) {
+        String userName = request.getUserName();
+        String menuName = request.getDishName();
         if (userName == null || menuName == null) {
             return new ErrorResponse(400,"user name or dish name not exist");
         }
@@ -99,9 +96,9 @@ public class UserController {
     }
 
     @PostMapping(value = "/upload_dish")
-    public Response uploadDish(@RequestParam Map request) {
-        String userName = (String) request.get("userName");
-        Dish dish = (Dish) request.get("dish");
+    public Response uploadDish(@RequestBody UploadDishRequest request) {
+        String userName = request.getUserName();
+        Dish dish = request.getDish();
         if (userName == null || dish.getDishName() == null) {
             return new ErrorResponse(400,"user name or dish name not exist");
         }
@@ -112,9 +109,9 @@ public class UserController {
     }
 
     @PostMapping(value = "/upload_menu")
-    public Response uploadMenu(@RequestParam Map request) {
-        String userName = request.get("userName").toString();
-        Menu menu = (Menu) request.get("menu");
+    public Response uploadMenu(@RequestBody UploadMenuRequest request) {
+        String userName = request.getUserName();
+        Menu menu = request.getMenu();
         if (userName == null || menu.getMenuName() == null) {
             return new ErrorResponse(400,"user name or dish name not exist");
         }
