@@ -36,7 +36,6 @@ public class UserController {
     }
 
     @GetMapping(value = "/user/{userName}")
-    @RequiresAuthentication
     public Response getUser(@PathVariable String userName) {
         User userTemp = userService.getUserInfo(userName);
         if (userTemp == null) {
@@ -55,7 +54,6 @@ public class UserController {
     }
 
     @DeleteMapping(value = "/user")
-    @RequiresAuthentication
     public Response deleteUser(@RequestParam Map<String, String> deleteUserRequest) {
         if (userService.deleteUser(deleteUserRequest.get("userName"))) {
             return new SuccessResponse(200, "delete user successfully");
@@ -64,7 +62,6 @@ public class UserController {
     }
 
     @PutMapping(value = "/user")
-    @RequiresAuthentication
     public Response updateUser(@RequestBody User userRequest) {
         User user = userService.updateInformation(userRequest);
         if (user == null) {
@@ -74,7 +71,6 @@ public class UserController {
     }
 
     @PutMapping(value = "/favorite_dish")
-    @RequiresAuthentication
     public Response addFavoriteDish(@RequestParam Map request) {
         LOGGER.info("userName: "+ request.get("userName"));
         LOGGER.info("dishName: "+ request.get("dishName"));
@@ -90,7 +86,6 @@ public class UserController {
     }
 
     @PutMapping(value = "/favorite_menu")
-    @RequiresAuthentication
     public Response addFavoriteMenu(@RequestParam Map<String, String> request) {
         String userName = request.get("userName");
         String menuName = request.get("dishName");
@@ -104,7 +99,6 @@ public class UserController {
     }
 
     @PostMapping(value = "/upload_dish")
-    @RequiresAuthentication
     public Response uploadDish(@RequestParam Map request) {
         String userName = (String) request.get("userName");
         Dish dish = (Dish) request.get("dish");
@@ -118,7 +112,6 @@ public class UserController {
     }
 
     @PostMapping(value = "/upload_menu")
-    @RequiresAuthentication
     public Response uploadMenu(@RequestParam Map request) {
         String userName = request.get("userName").toString();
         Menu menu = (Menu) request.get("menu");
