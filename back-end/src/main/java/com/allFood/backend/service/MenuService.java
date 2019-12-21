@@ -8,7 +8,7 @@ public interface MenuService {
 
     boolean addDishToMenu(String dishName, String menuName);
 
-    List<Menu> showMenus(int start, int end);
+    List<Menu> showMenus(int start, int limit);
 
     List<Menu> findMenu(String menuName);
 }
