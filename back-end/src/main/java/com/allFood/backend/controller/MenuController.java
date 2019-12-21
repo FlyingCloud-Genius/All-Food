@@ -1,6 +1,7 @@
 package com.allFood.backend.controller;
 
 import com.allFood.backend.dao.Menu;
+import com.allFood.backend.request.AddDishToMenuRequest;
 import com.allFood.backend.response.DataResponse;
 import com.allFood.backend.response.ErrorResponse;
 import com.allFood.backend.response.Response;
@@ -23,9 +24,9 @@ public class MenuController {
     }
 
     @PutMapping(value = "/menu/addDish")
-    public Response addDishToMenu(@RequestBody Map request) {
-        String dishName = (String) request.get("dishName");
-        String menuName = (String) request.get("menuName");
+    public Response addDishToMenu(@RequestBody AddDishToMenuRequest request) {
+        String dishName = request.getDishName();
+        String menuName = request.getUserName();
         if (dishName != null && menuName != null) {
             if (menuService.addDishToMenu(dishName, menuName)) {
                 return new SuccessResponse(200, "successfully insert!");
