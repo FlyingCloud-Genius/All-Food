@@ -17,6 +17,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class MyRealm extends AuthorizingRealm {
 
@@ -61,8 +64,8 @@ public class MyRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
-//        String account = JwtUtil.getClaim(principalCollection.toString(), SecurityConst.ACCOUNT);
-//        String password = userService.getPassword(account);
+        String account = JwtUtil.getClaim(principalCollection.toString(), SecurityConst.ACCOUNT);
+        String password = userService.getPassword(account);
 
         //get the role the user got in the system
 //        List<SysRole> roles = user.getRoles();
@@ -71,14 +74,14 @@ public class MyRealm extends AuthorizingRealm {
 //        }
 
 //        //get all the permissions the user got
-//        Set<String> permissions = new HashSet<>();
+        Set<String> permissions = new HashSet<>();
 //        for (SysRole role : roles) {
 //
 //            for (SysPermission permission : role.getPermissions()) {
 //                permissions.add(permission.getPermType());
 //            }
 //        }
-//        authorizationInfo.addStringPermissions(permissions);
+        authorizationInfo.addStringPermissions(permissions);
 
         return authorizationInfo;
     }
