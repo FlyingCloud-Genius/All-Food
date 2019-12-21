@@ -77,8 +77,8 @@ public class UserController {
     public Response addFavoriteDish(@RequestBody Map request) {
         LOGGER.info("userName: "+ request.get("userName"));
         LOGGER.info("dishName: "+ request.get("dishName"));
-        String userName = request.get("userName").toString();
-        String dishName = request.get("dishName").toString();
+        String userName = (String) request.get("userName");
+        String dishName = (String) request.get("dishName");
         if (userName == null || dishName == null) {
             return new ErrorResponse(400,"user name or dish name not exist");
         }
@@ -90,8 +90,8 @@ public class UserController {
 
     @PutMapping(value = "/favorite_menu")
     public Response addFavoriteMenu(@RequestBody Map request) {
-        String userName = request.get("userName").toString();
-        String menuName = request.get("dishName").toString();
+        String userName = (String) request.get("userName");
+        String menuName = (String) request.get("dishName");
         if (userName == null || menuName == null) {
             return new ErrorResponse(400,"user name or dish name not exist");
         }
@@ -103,7 +103,7 @@ public class UserController {
 
     @PostMapping(value = "/upload_dish")
     public Response uploadDish(@RequestBody Map request) {
-        String userName = request.get("userName").toString();
+        String userName = (String) request.get("userName");
         Dish dish = (Dish) request.get("dish");
         if (userName == null || dish.getDishName() == null) {
             return new ErrorResponse(400,"user name or dish name not exist");
