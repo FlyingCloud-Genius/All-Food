@@ -11,6 +11,8 @@ import com.allFood.backend.response.Response;
 import com.allFood.backend.response.SuccessResponse;
 import com.allFood.backend.service.UserService;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,8 @@ import java.util.Map;
 
 @RestController
 public class UserController {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     private UserService userService;
 
@@ -71,6 +75,8 @@ public class UserController {
 
     @PutMapping(value = "/favorite_dish")
     public Response addFavoriteDish(@RequestBody Map request) {
+        LOGGER.info("userName: "+ request.get("userName"));
+        LOGGER.info("dishName: "+ request.get("dishName"));
         String userName = request.get("userName").toString();
         String dishName = request.get("dishName").toString();
         if (userName == null || dishName == null) {

@@ -41,7 +41,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public List<Menu> showMenus(int start, int end) {
-        List<Menu> menus = menuRepository.getMenus(start, end);
+        List<Menu> menus = menuRepository.getMenus(start, start + end);
         if (menus.size() == 0) {
             return null;
         }

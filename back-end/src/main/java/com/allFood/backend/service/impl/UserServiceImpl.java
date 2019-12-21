@@ -84,6 +84,8 @@ public class UserServiceImpl implements UserService {
     public boolean addUser(AddUserRequest addUserRequest) {
         if (addUserRequest.getUserName() == null) {
             return false;
+        } else if (userRepository.findByUserName(addUserRequest.getUserName()) != null) {
+            return false;
         }
         User user = new User(addUserRequest.getUserName(), addUserRequest.getPassword());
         user.setAge(addUserRequest.getAge());
