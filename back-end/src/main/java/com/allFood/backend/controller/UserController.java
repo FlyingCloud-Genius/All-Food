@@ -89,9 +89,9 @@ public class UserController {
     }
 
     @PutMapping(value = "/favorite_menu")
-    public Response addFavoriteMenu(@RequestBody Map request) {
-        String userName = (String) request.get("userName");
-        String menuName = (String) request.get("dishName");
+    public Response addFavoriteMenu(@RequestBody Map<String, String> request) {
+        String userName = request.get("userName");
+        String menuName = request.get("dishName");
         if (userName == null || menuName == null) {
             return new ErrorResponse(400,"user name or dish name not exist");
         }
