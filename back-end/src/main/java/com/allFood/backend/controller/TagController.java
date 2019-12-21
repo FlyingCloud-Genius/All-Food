@@ -9,6 +9,7 @@ import com.allFood.backend.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -27,7 +28,7 @@ public class TagController {
     }
 
     @PostMapping(value = "/tag")
-    public Response insertAllTag(AllTag allTag) {
+    public Response insertAllTag(@RequestBody AllTag allTag) {
         if (tagService.setAllTag(allTag) == true) {
             return new SuccessResponse(200, "tags inserted successfully");
         } else {
