@@ -22,7 +22,7 @@ public class MenuController {
         this.menuService = menuService;
     }
 
-    @PutMapping(value = "/addDish")
+    @PutMapping(value = "/menu/addDish")
     public Response addDishToMenu(@RequestBody Map request) {
         String dishName = (String) request.get("dishName");
         String menuName = (String) request.get("menuName");

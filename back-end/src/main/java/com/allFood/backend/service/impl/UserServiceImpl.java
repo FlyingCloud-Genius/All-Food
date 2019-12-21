@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean addUser(AddUserRequest addUserRequest) {
-        if (userRepository.findByUserName(addUserRequest.getUserName()) == null) {
+        if (addUserRequest.getUserName() == null) {
             return false;
         }
         User user = new User(addUserRequest.getUserName(), addUserRequest.getPassword());
