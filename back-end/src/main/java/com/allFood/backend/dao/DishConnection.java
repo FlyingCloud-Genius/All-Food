@@ -1,12 +1,13 @@
 package com.allFood.backend.dao;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "dish")
-public class DishConnection {
+public class DishConnection implements Serializable {
 
     @Column(name = "dish_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

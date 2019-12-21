@@ -41,7 +41,7 @@ public class AlgorithmServiceImpl implements AlgorithmService {
     }
 
     @Override
-    public List<Dish> recommandDish(String userName) {
+    public List<Dish> recommendDish(String userName) {
         User user = userRepository.findByUserName(userName);
         if (user == null || user.getUserName() == null) {
             return null;

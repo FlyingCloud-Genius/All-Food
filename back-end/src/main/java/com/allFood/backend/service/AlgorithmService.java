@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface AlgorithmService {
 
-    List<Dish> recommandDish(String userName);
+    List<Dish> recommendDish(String userName);
 }

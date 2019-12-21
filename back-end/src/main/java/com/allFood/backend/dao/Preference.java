@@ -3,6 +3,7 @@ package com.allFood.backend.dao;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "preference")
-public class Preference {
+public class Preference implements Serializable {
 
     @JsonIgnore
     @Column(name = "preference_id")
