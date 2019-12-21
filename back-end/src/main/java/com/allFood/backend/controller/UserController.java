@@ -56,7 +56,7 @@ public class UserController {
 
     @DeleteMapping(value = "/user")
     @RequiresAuthentication
-    public Response deleteUser(@RequestBody Map<String, String> deleteUserRequest) {
+    public Response deleteUser(@RequestParam Map<String, String> deleteUserRequest) {
         if (userService.deleteUser(deleteUserRequest.get("userName"))) {
             return new SuccessResponse(200, "delete user successfully");
         }
@@ -74,7 +74,8 @@ public class UserController {
     }
 
     @PutMapping(value = "/favorite_dish")
-    public Response addFavoriteDish(@RequestBody Map request) {
+    @RequiresAuthentication
+    public Response addFavoriteDish(@RequestParam Map request) {
         LOGGER.info("userName: "+ request.get("userName"));
         LOGGER.info("dishName: "+ request.get("dishName"));
         String userName = (String) request.get("userName");
@@ -89,7 +90,8 @@ public class UserController {
     }
 
     @PutMapping(value = "/favorite_menu")
-    public Response addFavoriteMenu(@RequestBody Map<String, String> request) {
+    @RequiresAuthentication
+    public Response addFavoriteMenu(@RequestParam Map<String, String> request) {
         String userName = request.get("userName");
         String menuName = request.get("dishName");
         if (userName == null || menuName == null) {
@@ -102,7 +104,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/upload_dish")
-    public Response uploadDish(@RequestBody Map request) {
+    @RequiresAuthentication
+    public Response uploadDish(@RequestParam Map request) {
         String userName = (String) request.get("userName");
         Dish dish = (Dish) request.get("dish");
         if (userName == null || dish.getDishName() == null) {
@@ -115,7 +118,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/upload_menu")
-    public Response uploadMenu(@RequestBody Map request) {
+    @RequiresAuthentication
+    public Response uploadMenu(@RequestParam Map request) {
         String userName = request.get("userName").toString();
         Menu menu = (Menu) request.get("menu");
         if (userName == null || menu.getMenuName() == null) {
