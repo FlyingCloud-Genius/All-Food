@@ -8,6 +8,8 @@ import com.allFood.backend.repository.UserRepository;
 import com.allFood.backend.service.AlgorithmService;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,8 @@ import java.util.Map;
 
 @Service
 public class AlgorithmServiceImpl implements AlgorithmService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AlgorithmServiceImpl.class);
 
     private final static String filePath = "/home/cloud/All-Food/back-end/src/main/python/15NN.py";
 
@@ -49,6 +53,7 @@ public class AlgorithmServiceImpl implements AlgorithmService {
         try {
             invoker.run(mapper.writeValueAsString(user));
             String result = resultProcessing(invoker.getResult());
+            LOGGER.info(result);
             Map<String, List<Long>> ids = mapper.readValue(result, Map.class);
             List<Dish> resultDishes = new ArrayList<>();
             for (Long id : ids.get("id")) {
