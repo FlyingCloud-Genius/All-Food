@@ -1,0 +1,95 @@
+.bg-myspace{
+    background: url(../img/bg/bg-myspace.jpg) center center no-repeat;
+}
+
+.bg-home-1{
+    background: url(../img/bg/bg-home-1.jpg) center center no-repeat;
+}
+
+.bg-home-2{
+    background: url(../img/bg/bg-home-2.jpg) center center no-repeat;
+}
+
+.bg-dishes{
+    background: url(../img/bg/bg-dishes.jpg) center center no-repeat;
+}
+
+.bg-menu{
+    background: url(../img/bg/bg-menu.jpg) center center no-repeat;
+}
+
+.bg-health{
+    background: url(../img/bg/bg-health.jpg) center center no-repeat;
+}
+
+.custom-item{
+    width: 300px;
+    height: 100%;
+    min-height: 1px;
+    display: inline-block;
+}
+
+.ht-mega-menu img {
+    width: 265px;
+}
+
+#showDishDetail .modal-body p, #showDishDetail .modal-body h4, #showDishDetail .modal-body small {
+    text-align: left;
+}
+
+#login_box{
+    z-index: 9999;
+}
+
+#register_box{
+    z-index: 9999;
+}
+
+#favBlock {
+    z-index: 9999;
+    float: left;
+    position: fixed;
+    top: 30px;
+    left:30px;
+}
+
+.dishDetailTextBlock {
+    padding: 10px 25px;
+}
+
+.width-100-percent{
+    width: 100%!important;
+}
+
+.nav-post-btn {
+    background-color: #79A207;
+    color: #ffffff;
+}
+
+.nav-post-btn:hover {
+    background-color: #688c06;
+}
+
+.nav-post-btn:active, .nav-post-btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(121,162,7,.25);
+}
+
+#pwd-form input, #pwd-form textarea, #profile-form input, #profile-form textarea {
+    background: #fbfbfb none repeat scroll 0 0;
+    border: 0 none;
+    color: #696969;
+    height: 46px;
+    margin-bottom: 20px;
+    padding: 0 15px;
+    width: 100%;
+}
+
+#pwd-form .submit-btn:hover, #profile-form .submit-btn:hover {
+    border-color: #78a206;
+    background: #78a206;
+    color: #ffffff;
+}
+#pwd-form .submit-btn, #profile-form .submit-btn {
+    cursor: pointer;
+}
+
