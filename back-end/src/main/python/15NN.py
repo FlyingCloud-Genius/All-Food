@@ -40,8 +40,8 @@ data = users.iloc[1]
 datapeople = data[3]
 #dataregions = data[6]
 directs = users.iloc[3][1]
-userMap = {}
 '''
+userMap = {}
 
 '''
 ---------- User Class ----------------
