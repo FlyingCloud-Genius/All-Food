@@ -52,9 +52,9 @@ public class AlgorithmServiceImpl implements AlgorithmService {
         }
         try {
             invoker.run(mapper.writeValueAsString(user));
-            String result = resultProcessing(invoker.getResult());
+            String result = invoker.getResult();
             LOGGER.info(result);
-            Map<String, List<Long>> ids = mapper.readValue(result, Map.class);
+            Map<String, List<Long>> ids = mapper.readValue(resultProcessing(result), Map.class);
             List<Dish> resultDishes = new ArrayList<>();
             for (Long id : ids.get("id")) {
                 resultDishes.add(dishRepository.findByDishId(id));
