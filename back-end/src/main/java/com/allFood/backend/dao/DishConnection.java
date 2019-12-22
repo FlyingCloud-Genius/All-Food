@@ -1,5 +1,7 @@
 package com.allFood.backend.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,6 +44,7 @@ public class DishConnection implements Serializable {
     }
 
     @ManyToMany(targetEntity = User.class, mappedBy = "myFavoriteDishes")
+    @JsonIgnore
     public List<User> getDishLikedBy() {
         return dishLikedBy;
     }
@@ -51,6 +54,7 @@ public class DishConnection implements Serializable {
     }
 
     @ManyToMany(targetEntity = Menu.class, mappedBy = "dishes")
+    @JsonIgnore
     public List<Menu> getDishInMenu() {
         return dishInMenu;
     }
