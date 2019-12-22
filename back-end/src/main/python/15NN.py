@@ -23,9 +23,11 @@ import requests
 #from utils import URL_to_filename
 
 # 2 parameters
+
 param0 = sys.argv[0]
 #param1 = sys.argv[1]
 #users = pd.read_csv('D:\Learning Materials\\Statistics\\Probrability and Statistics II\\Assignments\\Assignment 3\\AB.csv')
+'''
 users = pd.read_csv('D:\\Learning Materials\\Engineering General Courses\\ERG3010\\Final Project\\Project\\Recommendation System\\finalUser.csv')
 dishes = pd.read_csv('D:\\Learning Materials\\Engineering General Courses\\ERG3010\\Final Project\\Project\\Recommendation System\\1202\\finalData.csv',encoding="ISO-8859-1")
 dishes.values
@@ -39,6 +41,7 @@ datapeople = data[3]
 #dataregions = data[6]
 directs = users.iloc[3][1]
 userMap = {}
+'''
 
 '''
 ---------- User Class ----------------
@@ -314,10 +317,10 @@ if __name__ == '__main__':
                         help='User ID')
     #args = parser.parse_args()
     args = '''{"userName": "cloud","age": 22,"weight": 70,"height": 178,"eMail": "116010264@link.cuhk.edu.cn","phoneNumber": "17722545751","createTime": null,"region": "jiangxi","taste": "spicy","forWhom": "YYT","myFavoriteDishes": [],"myUploadDish": [],"myUploadMenu": [],"myFavoriteMenu": [],"myPreference": []}'''
-    try:
-        user = json.loads(args)
-        user = [user]
-        user = pd.DataFrame(user)
-        main(user)
-    except err:
-        print >>sys.stderr, err.msg
+    #try:
+    user = json.loads(args)
+    user = [user]
+    user = pd.DataFrame(user)
+    main(user)
+    #except:
+        #print('error')
