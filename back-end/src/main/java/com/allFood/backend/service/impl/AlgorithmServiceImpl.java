@@ -54,10 +54,10 @@ public class AlgorithmServiceImpl implements AlgorithmService {
             invoker.run(mapper.writeValueAsString(user));
             String result = invoker.getResult();
             LOGGER.info(result);
-            Map<String, List<Long>> ids = mapper.readValue(resultProcessing(result), Map.class);
+            Map<String, List<Integer>> ids = mapper.readValue(resultProcessing(result), Map.class);
             List<Dish> resultDishes = new ArrayList<>();
-            for (Long id : ids.get("id")) {
-                resultDishes.add(dishRepository.findByDishId(id));
+            for (Integer id : ids.get("id")) {
+                resultDishes.add(dishRepository.findByDishId(Long.valueOf(String.valueOf(id))));
             }
             return resultDishes;
         } catch (Exception e) {
