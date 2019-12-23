@@ -187,6 +187,7 @@ public class UserServiceImpl implements UserService {
             user.setMyUploadDish(new ArrayList<>());
         }
         user.uploadDish(dishConnection);
+        userRepository.saveAndFlush(user);
         return true;
     }
 
@@ -201,6 +202,7 @@ public class UserServiceImpl implements UserService {
             user.setMyUploadMenu(new ArrayList<>());
         }
         user.uploadMenu(menu);
+        userRepository.saveAndFlush(user);
         return true;
 
     }
