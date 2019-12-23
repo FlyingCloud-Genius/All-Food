@@ -6,6 +6,8 @@ import com.allFood.backend.dao.dish.Dish;
 import com.allFood.backend.repository.DishRepository;
 import com.allFood.backend.repository.MenuRepository;
 import com.allFood.backend.service.MenuService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ import java.util.List;
 
 @Service
 public class MenuServiceImpl implements MenuService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MenuServiceImpl.class);
 
     private MenuRepository menuRepository;
 
@@ -27,13 +31,20 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public boolean addDishToMenu(String dishName, String menuName) {
+        LOGGER.info("adding dish to the database");
         Menu menu = menuRepository.findByMenuName(menuName);
-        if (menu.getMenuId() == null) return false;
+        if (menu.getMenuId() == null) {
+            LOGGER.error("no such menu in the database");
+            return false;
+        }
         if (menu.getDishes() == null) {
             menu.setDishes(new ArrayList<>());
         }
         Dish dish = dishRepository.findByDishName(dishName);
-        if (dish.getDishName() == null) return false;
+        if (dish.getDishName() == null) {
+            LOGGER.error("no such dish in the database");
+            return false;
+        }
         menu.addDishToMenu(new DishConnection(dish.getDishId()));
         menuRepository.saveAndFlush(menu);
         return true;
